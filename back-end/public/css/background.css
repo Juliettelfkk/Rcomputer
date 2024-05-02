@@ -1,0 +1,22 @@
+.image
+{
+    background-image: linear-gradient(to right,hsl(0, 0%, 100%), hsl(0, 32%, 85%));
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.navigation
+{
+    height: 80px;
+    padding: 3px;
+    background-color: green;
+}
+
+body{
+    width: 100vw;
+}
+
+.sidebar-color{
+    background-image: linear-gradient(to right, rgb(154, 38, 38), rgb(206, 18, 18), rgb(135, 44, 44));
+}
