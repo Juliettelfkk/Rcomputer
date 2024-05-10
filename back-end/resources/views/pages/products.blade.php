@@ -11,7 +11,7 @@
     </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/css/background.css">
-    <title>Categories</title>
+    <title>products</title>
 </head>
 
 <body>
@@ -22,7 +22,7 @@
         <div class="col-10 continaer image">
             <div class="row mt-3">
                 <div class="col text-start">
-                    <h1 class="display-3 fw-bold text-dark">Categories</h1>
+                    <h1 class="display-3 fw-bold text-dark">Products</h1>
                 </div>
                 <div class="col text-center m-auto mt-4">
                     <form class="d-flex">
@@ -32,6 +32,9 @@
                 </div>
                 <div class="col my-auto text-end">
                     <button class="btn btn-success fw-bold me-5 p-2 px-3 shadow"><i class="bi bi-person-fill me-2"></i>Log in</button>
+                    <a href="{{ route('product-form') }}">
+                        <button class="btn btn-info fw-bold me-5 p-2 px-3 shadow"><i class="bi bi-plus-square-fill me-2"></i>Add</button>
+                    </a>
                 </div>
             </div>
             <div class="container mt-5">
@@ -47,14 +50,18 @@
                                                     <th scope="col">Id</th>
                                                     <th scope="col">Name</th>
                                                     <th scope="col">Description</th>
+                                                    <th scope="col">Price</th>
+                                                    <th scope="col">Quantity</th>
                                                     <th scope="col">Options</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <td>1</td>
-                                                    <td>Mahher borads</td>
-                                                    <td>used to build setup pc's</td>
+                                                    <td>Boxing</td>
+                                                    <td>great</td>
+                                                    <td>1 200 da</td>
+                                                    <td>10</td>
                                                     <td>
                                                         <button class="btn btn-warning"><i
                                                                 class="bi bi-pencil-square"></i></button>
@@ -64,8 +71,10 @@
                                                 </tr>
                                                 <tr>
                                                     <td>2</td>
-                                                    <td>Mouse</td>
-                                                    <td>most fast and speed moving mouses</td>
+                                                    <td>Boxing</td>
+                                                    <td>great</td>
+                                                    <td>1 200 da</td>
+                                                    <td>10</td>
                                                     <td>
                                                         <button class="btn btn-warning"><i
                                                                 class="bi bi-pencil-square"></i></button>
@@ -75,8 +84,23 @@
                                                 </tr>
                                                 <tr>
                                                     <td>3</td>
-                                                    <td>keyBoards</td>
-                                                    <td>best perfermance ever to comenicate with pc</td>
+                                                    <td>Boxing</td>
+                                                    <td>great</td>
+                                                    <td>1 200 da</td>
+                                                    <td>10</td>
+                                                    <td>
+                                                        <button class="btn btn-warning"><i
+                                                                class="bi bi-pencil-square"></i></button>
+                                                        <button class="btn btn-danger"><i
+                                                                class="bi bi-trash-fill"></i></button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>4</td>
+                                                    <td>Boxing</td>
+                                                    <td>great</td>
+                                                    <td>1 200 da</td>
+                                                    <td>10</td>
                                                     <td>
                                                         <button class="btn btn-warning"><i
                                                                 class="bi bi-pencil-square"></i></button>

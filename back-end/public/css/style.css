@@ -1,0 +1,33 @@
+body {
+    background-image: linear-gradient(
+        to right,
+        hsl(0, 0%, 100%),
+        hsl(0, 49%, 83%)
+    );
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.navigation {
+    height: 80px;
+    padding: 3px;
+    background-color: green;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}

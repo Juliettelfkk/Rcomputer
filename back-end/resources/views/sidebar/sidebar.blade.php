@@ -6,7 +6,7 @@
         <div class="d-block">
             <div class="d-block">
                 <a href="{{ route('products') }}">
-                    <button class="btn btn-danger p-2 my-3 w-50 shadow rounded rounded-pill">
+                    <button class="btn btn-dark p-2 my-3 w-50 shadow rounded rounded-pill">
                         <i class="bi bi-wallet2 me-2"></i>
                         Products
                     </button>
@@ -14,14 +14,14 @@
             </div>
             <div class="d-block">
                 <a href="{{ route('brands') }}">
-                    <button class="btn btn-danger p-2 my-3 w-50 shadow rounded rounded-pill">
+                    <button class="btn btn-dark p-2 my-3 w-50 shadow rounded rounded-pill">
                         <i class="bi bi-trello me-3"></i>
                         Brands
                     </button></a>
             </div>
             <div class="d-block">
                 <a href="{{ route('categories') }}">
-                    <button class="btn btn-danger p-2 my-3 w-50 shadow rounded rounded-pill">
+                    <button class="btn btn-dark p-2 my-3 w-50 shadow rounded rounded-pill">
                         <i class="bi bi-tags-fill me-2"></i>
                         Categorys
                     </button>
@@ -29,7 +29,7 @@
             </div>
             <div class="d-block">
                 <a href="{{ route('orders') }}">
-                    <button class="btn btn-danger p-2 my-3 w-50 shadow rounded rounded-pill">
+                    <button class="btn btn-dark p-2 my-3 w-50 shadow rounded rounded-pill">
                         <i class="bi bi-list-ol me-2"></i>
                         Orders
                     </button>
@@ -38,7 +38,7 @@
         </div>
         <div class="d-block">
             <a href="#">
-                <button class="btn btn-danger p-2 my-3 w-50 shadow rounded rounded-pill">
+                <button class="btn btn-dark p-2 my-3 w-50 shadow rounded rounded-pill">
                     <i class="bi bi-box-arrow-right me-2"></i>
                     Log out
                 </button>
