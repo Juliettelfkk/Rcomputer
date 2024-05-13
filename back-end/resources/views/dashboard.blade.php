@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <div class="row  h-100">
+    <div class="row h-100">
         <div class="col-2 bg-danger-subtle text-center shadow sidebar-color">
             @include('sidebar.sidebar')
         </div>
