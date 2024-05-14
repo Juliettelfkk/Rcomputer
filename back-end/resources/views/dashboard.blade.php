@@ -16,10 +16,10 @@
 
 <body>
     <div class="row h-100">
-        <div class="col-2 bg-danger-subtle text-center shadow sidebar-color">
+        <div class="col-lg-2 col-md-12 bg-danger-subtle text-center shadow sidebar-color">
             @include('sidebar.sidebar')
         </div>
-        <div class="col-10 continaer image">
+        <div class="col-lg-10 continaer image">
             <div class="row  mt-3">
                 <div class="col text-start">
                     <h1 class="display-3 fw-bold text-dark">Dashboard</h1>
