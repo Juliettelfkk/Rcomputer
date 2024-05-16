@@ -31,10 +31,18 @@
                     </form>
                 </div>
                 <div class="col my-auto text-end">
-                    <button class="btn btn-success fw-bold me-5 p-2 px-3 shadow"><i class="bi bi-person-fill me-2"></i>Log in</button>
+                    <button class="btn btn-success fw-bold me-5 p-2 px-3 shadow"><i
+                            class="bi bi-person-fill me-2"></i>Log in</button>
                 </div>
             </div>
             <div class="container mt-5">
+                <div>
+                    @if (session()->has('success'))
+                        <div>
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                </div>
                 <div class="row mt-5">
                     <div class="col px-5 py-3 m-2 bg-light border-5 border-start border-danger shadow rounded-5">
                         <div class="d-block">
@@ -76,7 +84,8 @@
                                     <h4 class="fw-bold text-dark">24</h4>
                                 </div>
                                 <div class="col text-end m-auto">
-                                    <i class="bi bi-bookmark-check-fill" style="font-size: 1.5rem; color: rgb(0, 0, 0);"></i>
+                                    <i class="bi bi-bookmark-check-fill"
+                                        style="font-size: 1.5rem; color: rgb(0, 0, 0);"></i>
                                 </div>
                             </div>
                         </div>
@@ -91,7 +100,8 @@
                                     <h4 class="fw-bold text-dark">50</h4>
                                 </div>
                                 <div class="col text-end m-auto">
-                                    <i class="bi bi-person-lines-fill" style="font-size: 1.5rem; color: rgb(0, 0, 0);"></i>
+                                    <i class="bi bi-person-lines-fill"
+                                        style="font-size: 1.5rem; color: rgb(0, 0, 0);"></i>
                                 </div>
                             </div>
                         </div>

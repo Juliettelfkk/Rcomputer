@@ -31,33 +31,58 @@
             </div>
         </div>
         <div class="d-flex justify-content-center align-items-center mt-5">
-            <form action="" method="post">
+            <form action="{{ route('register') }}" method="post">
+                @csrf
                 <div class="row">
                     <div class="col">
                         <input class="form-control form-control-lg my-2 shadow rounded-pill input_width" type="text"
                             name="first_name" placeholder="FirstName" required>
+                        @error('first_name')
+                            <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="col">
                         <input class="form-control form-control-lg my-2 shadow rounded-pill input_width" type="text"
                             name="last_name" placeholder="LastName" required>
+                        @error('last_name')
+                            <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <input class="form-control form-control-lg my-2 shadow rounded-pill" type="password"
                             name="password" placeholder="Password" required>
+                        @error('password')
+                            <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <input class="form-control form-control-lg my-2 shadow rounded-pill" type="password"
+                            name="password_confirmation" placeholder="Password confirmation" required>
+                        @error('password_confirmation')
+                            <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <input class="form-control form-control-lg my-2 shadow rounded-pill" type="email"
                             name="email" placeholder="Email" required>
+                        @error('email')
+                            <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <input class="form-control form-control-lg my-2 shadow rounded-pill" type="file"
                             name="image">
+                        @error('image')
+                            <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="row ">
@@ -70,7 +95,8 @@
         </div>
         <div class="d-block mt-5">
             <span class="text-center blockquote">
-                <p>You a memeber ? <a href="{{ route('login') }}" class="text-decoration-none ms-1 fst-italic">Log in</a></p>
+                <p>You a memeber ? <a href="{{ route('login') }}" class="text-decoration-none ms-1 fst-italic">Log
+                        in</a></p>
             </span>
         </div>
     </div>
