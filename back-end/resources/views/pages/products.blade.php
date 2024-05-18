@@ -31,10 +31,20 @@
                     </form>
                 </div>
                 <div class="col my-auto text-end">
-                    <button class="btn btn-success fw-bold me-5 p-2 px-3 shadow"><i class="bi bi-person-fill me-2"></i>Log in</button>
                     <a href="{{ route('product-form') }}">
-                        <button class="btn btn-info fw-bold me-5 p-2 px-3 shadow"><i class="bi bi-plus-square-fill me-2"></i>Add</button>
+                        <button class="btn btn-info fw-bold me-5 p-2 px-3 shadow"><i
+                                class="bi bi-plus-square-fill me-2"></i>Add</button>
                     </a>
+                </div>
+                <div class="d-block">
+                    @if (session()->has('success'))
+                        <div class="w-75 alert alert-dismissible m-auto text-center bg-success-subtle h4 rounded-pill shadow-lg text-success"
+                            role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                aria-label="Close"></button>
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="container mt-5">
@@ -48,66 +58,46 @@
                                             <thead style="background-color: #002d72;">
                                                 <tr>
                                                     <th scope="col">Id</th>
+                                                    <th scope="col">Sku</th>
                                                     <th scope="col">Name</th>
+                                                    <th scope="col">Brand</th>
+                                                    <th scope="col">Category</th>
                                                     <th scope="col">Description</th>
                                                     <th scope="col">Price</th>
+                                                    <th scope="col">Descount</th>
                                                     <th scope="col">Quantity</th>
+                                                    <th scope="cal">Image</th>
                                                     <th scope="col">Options</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Boxing</td>
-                                                    <td>great</td>
-                                                    <td>1 200 da</td>
-                                                    <td>10</td>
-                                                    <td>
-                                                        <button class="btn btn-warning"><i
-                                                                class="bi bi-pencil-square"></i></button>
-                                                        <button class="btn btn-danger"><i
-                                                                class="bi bi-trash-fill"></i></button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Boxing</td>
-                                                    <td>great</td>
-                                                    <td>1 200 da</td>
-                                                    <td>10</td>
-                                                    <td>
-                                                        <button class="btn btn-warning"><i
-                                                                class="bi bi-pencil-square"></i></button>
-                                                        <button class="btn btn-danger"><i
-                                                                class="bi bi-trash-fill"></i></button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Boxing</td>
-                                                    <td>great</td>
-                                                    <td>1 200 da</td>
-                                                    <td>10</td>
-                                                    <td>
-                                                        <button class="btn btn-warning"><i
-                                                                class="bi bi-pencil-square"></i></button>
-                                                        <button class="btn btn-danger"><i
-                                                                class="bi bi-trash-fill"></i></button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td>Boxing</td>
-                                                    <td>great</td>
-                                                    <td>1 200 da</td>
-                                                    <td>10</td>
-                                                    <td>
-                                                        <button class="btn btn-warning"><i
-                                                                class="bi bi-pencil-square"></i></button>
-                                                        <button class="btn btn-danger"><i
-                                                                class="bi bi-trash-fill"></i></button>
-                                                    </td>
-                                                </tr>
+                                                @foreach ($products as $product)
+                                                    <tr>
+                                                        <td>{{ $product['id'] }}</td>
+                                                        <td>{{ $product['sku'] }}</td>
+                                                        <td>{{ $product['name'] }}</td>
+                                                        <td>x</td>
+                                                        <td>x</td>
+                                                        <td>{{ $product['description'] }}</td>
+                                                        <td>{{ $product['price'] }}</td>
+                                                        <td>{{ $product['discount'] }}</td>
+                                                        <td>{{ $product['quantity'] }}</td>
+                                                        <td><img src="{{ 'storage/' . $product['image'] }}" alt="" width="100"></td>
+                                                        <td class="d-flex justify-content-center">
+                                                            <form action="" method="post">
+                                                                <button class="btn btn-warning mx-1"><i
+                                                                        class="bi bi-pencil-square"></i></button>
+                                                            </form>
+                                                            <form action="{{ route('product.destroy', $product) }}"
+                                                                method="post">
+                                                                @csrf
+                                                                @method('delete')
+                                                                <button class="btn btn-danger mx-1"><i
+                                                                        class="bi bi-trash-fill"></i></button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>

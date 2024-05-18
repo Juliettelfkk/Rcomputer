@@ -17,5 +17,23 @@ class Product extends Model
         'quantity',
         'image',
         'sku',
+        'admin_id',
+        'category_id',
+        'brand_id',
     ];
+
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class);
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

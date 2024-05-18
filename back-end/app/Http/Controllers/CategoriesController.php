@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Models\Admin;
 
 class CategoriesController extends Controller
 {
@@ -13,7 +14,11 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+
+        return view('pages.categories', [
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -21,7 +26,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('forms.category-form');
     }
 
     /**
@@ -29,7 +34,22 @@ class CategoriesController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+
+        $validated['admin_id'] = auth()->user()->id;
+
+        Category::create([
+            'name' => $validated['name'],
+            'description' => $validated['description'],
+            'admin_id' => $validated['admin_id'],
+        ]);
+
+        return redirect()
+            ->route('categories')
+            ->with('success', 'Category Added Successfully !');
     }
 
     /**
@@ -61,6 +81,10 @@ class CategoriesController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return redirect()
+            ->route('categories')
+            ->with('success', 'Category Deleted Successfully !');
     }
 }

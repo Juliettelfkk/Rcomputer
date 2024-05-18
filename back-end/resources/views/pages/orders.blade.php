@@ -31,7 +31,9 @@
                     </form>
                 </div>
                 <div class="col my-auto text-end">
-                    <button class="btn btn-success fw-bold me-5 p-2 px-3 shadow"><i class="bi bi-person-fill me-2"></i>Log in</button>
+                    <a href="{{ route('brand-form') }}">
+                        <button class="btn btn-info fw-bold me-5 p-2 px-3 shadow"><i class="bi bi-plus-square-fill me-2"></i>Add</button>
+                    </a>
                 </div>
             </div>
             <div class="container mt-5">

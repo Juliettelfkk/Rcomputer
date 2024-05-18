@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Brand;
+use App\Models\Category;
 
 class ProductsController extends Controller
 {
@@ -13,7 +15,10 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all();
+        return view('pages.products' , [
+            'products' => $products,
+        ]);
     }
 
     /**
@@ -21,7 +26,12 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        $brands = Brand::all();
+        $categories = Category::all();
+        return view('forms.product-form', [
+            'brands' => $brands,
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -29,7 +39,42 @@ class ProductsController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'discount' => 'required',
+            'quantity' => 'required',
+            'image' => 'image',
+            'sku' => 'required',
+            'category' => 'required',
+            'brand' => 'required',
+        ]);
+
+        $validated['admin_id'] = auth()->user()->id;
+
+        if (request()->hasFile('image')) {
+            $imagePath = request('image')->store('products', 'public');
+            $validated['image'] = $imagePath;
+        }
+
+        Product::create([
+            'name' => $validated['name'],
+            'description' => $validated['description'],
+            'price' => $validated['price'],
+            'discount' => $validated['discount'],
+            'quantity' => $validated['quantity'],
+            'image' => $validated['image'],
+            'sku' => $validated['sku'],
+            'admin_id' => $validated['admin_id'],
+            'category_id' => $validated['category'],
+            'brand_id' => $validated['brand'],
+        ]);
+
+        return redirect()
+            ->route('products')
+            ->with('success', 'Product Added Successfully !');
+
     }
 
     /**
@@ -61,6 +106,10 @@ class ProductsController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        return redirect()
+            ->route('products')
+            ->with('success', 'Product Deleted Successfully !');
     }
 }

@@ -30,9 +30,15 @@
                         <button class="btn btn-outline-success fw-bold shadow" type="submit">Search</button>
                     </form>
                 </div>
-                <div class="col my-auto text-end">
-                    <button class="btn btn-success fw-bold me-5 p-2 px-3 shadow"><i
-                            class="bi bi-person-fill me-2"></i>Log in</button>
+                <div class="col text-end m-auto mt-4">
+                    <a href="" class="d-flex justify-content-end p-auto links">
+                        <div class="my-auto">
+                            <span class="h4 p-3 text-dark">{{ $fullName }}</span>
+                        </div>
+                        <div class="my-auto">
+                            <img src="{{ $image }}" alt="admin image" class="rounded-pill shadow-lg me-5" width="50px" height="50px">
+                        </div>
+                    </a>
                 </div>
             </div>
             <div class="container mt-5">
@@ -47,68 +53,76 @@
                     @endif
                 </div>
                 <div class="row mt-5">
-                    <div class="col px-5 py-3 m-2 bg-light border-5 border-start border-danger shadow rounded-5">
-                        <div class="d-block">
-                            <div>
-                                <h3 class="display-5 text-danger">Products</h3>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <h4 class="fw-bold text-dark">15</h4>
+                    <a href="{{ route('products') }}" class="links col px-5 py-3 m-2 bg-light border-5 border-start border-danger shadow rounded-5">
+                        <div>
+                            <div class="d-block">
+                                <div>
+                                    <h3 class="display-5 text-danger">Products</h3>
                                 </div>
-                                <div class="col text-end m-auto">
-                                    <i class="bi bi-dropbox" style="font-size: 1.5rem; color: rgb(0, 0, 0);"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col px-5 py-3 m-2 bg-light border-5 border-start border-info shadow rounded-5">
-                        <div class="d-block">
-                            <div>
-                                <h3 class="display-5 text-info">Brands</h3>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <h4 class="fw-bold text-dark">30</h4>
-                                </div>
-                                <div class="col text-end m-auto">
-                                    <i class="bi bi-award-fill" style="font-size: 1.5rem; color: rgb(0, 0, 0);"></i>
+                                <div class="row">
+                                    <div class="col">
+                                        <h4 class="fw-bold text-dark">{{ $products_number }}</h4>
+                                    </div>
+                                    <div class="col text-end m-auto">
+                                        <i class="bi bi-dropbox" style="font-size: 1.5rem; color: rgb(0, 0, 0);"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col px-5 py-3 m-2 bg-light border-5 border-start border-warning shadow rounded-5">
-                        <div class="d-block">
-                            <div>
-                                <h3 class="display-5 text-warning">Categories</h3>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <h4 class="fw-bold text-dark">24</h4>
+                    </a>
+                    <a href="{{ route('brands') }}" class="links col px-5 py-3 m-2 bg-light border-5 border-start border-info shadow rounded-5">
+                        <div>
+                            <div class="d-block">
+                                <div>
+                                    <h3 class="display-5 text-info">Brands</h3>
                                 </div>
-                                <div class="col text-end m-auto">
-                                    <i class="bi bi-bookmark-check-fill"
-                                        style="font-size: 1.5rem; color: rgb(0, 0, 0);"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col px-5 py-3 m-2 bg-light border-5 border-start border-success shadow rounded-5">
-                        <div class="d-block">
-                            <div>
-                                <h3 class="display-5 text-success">Orders</h3>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <h4 class="fw-bold text-dark">50</h4>
-                                </div>
-                                <div class="col text-end m-auto">
-                                    <i class="bi bi-person-lines-fill"
-                                        style="font-size: 1.5rem; color: rgb(0, 0, 0);"></i>
+                                <div class="row">
+                                    <div class="col">
+                                        <h4 class="fw-bold text-dark">{{ $brands_number }}</h4>
+                                    </div>
+                                    <div class="col text-end m-auto">
+                                        <i class="bi bi-award-fill" style="font-size: 1.5rem; color: rgb(0, 0, 0);"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
+                    <a href="{{ route('categories') }}" class="links col px-5 py-3 m-2 bg-light border-5 border-start border-warning shadow rounded-5">
+                        <div>
+                            <div class="d-block">
+                                <div>
+                                    <h3 class="display-5 text-warning">Categories</h3>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <h4 class="fw-bold text-dark">{{ $categories_number }}</h4>
+                                    </div>
+                                    <div class="col text-end m-auto">
+                                        <i class="bi bi-bookmark-check-fill"
+                                            style="font-size: 1.5rem; color: rgb(0, 0, 0);"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="{{ route('orders') }}" class=" links col px-5 py-3 m-2 bg-light border-5 border-start border-success shadow rounded-5">
+                        <div>
+                            <div class="d-block">
+                                <div>
+                                    <h3 class="display-5 text-success">Orders</h3>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <h4 class="fw-bold text-dark">{{ $orders_number }}</h4>
+                                    </div>
+                                    <div class="col text-end m-auto">
+                                        <i class="bi bi-person-lines-fill"
+                                            style="font-size: 1.5rem; color: rgb(0, 0, 0);"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>

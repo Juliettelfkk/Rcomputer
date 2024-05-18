@@ -32,7 +32,8 @@
                 </div>
                 <div class="col my-auto text-end">
                     <a href="{{ route('brand-form') }}">
-                        <button class="btn btn-info fw-bold me-5 p-2 px-3 shadow"><i class="bi bi-plus-square-fill me-2"></i>Add</button>
+                        <button class="btn btn-info fw-bold me-5 p-2 px-3 shadow"><i
+                                class="bi bi-plus-square-fill me-2"></i>Add</button>
                     </a>
                 </div>
                 <div class="d-block">
@@ -63,39 +64,26 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>AMD</td>
-                                                    <td>this company create processors</td>
-                                                    <td>
-                                                        <button class="btn btn-warning"><i
-                                                                class="bi bi-pencil-square"></i></button>
-                                                        <button class="btn btn-danger"><i
-                                                                class="bi bi-trash-fill"></i></button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>nvidia</td>
-                                                    <td>this company create graphic cards</td>
-                                                    <td>
-                                                        <button class="btn btn-warning"><i
-                                                                class="bi bi-pencil-square"></i></button>
-                                                        <button class="btn btn-danger"><i
-                                                                class="bi bi-trash-fill"></i></button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>intel</td>
-                                                    <td>this company create processor</td>
-                                                    <td>
-                                                        <button class="btn btn-warning"><i
-                                                                class="bi bi-pencil-square"></i></button>
-                                                        <button class="btn btn-danger"><i
-                                                                class="bi bi-trash-fill"></i></button>
-                                                    </td>
-                                                </tr>
+                                                @foreach ($brands as $brand)
+                                                    <tr>
+                                                        <td>{{ $brand['id'] }}</td>
+                                                        <td>{{ $brand['name'] }}</td>
+                                                        <td>{{ $brand['description'] }}</td>
+                                                        <td class="d-flex justify-content-center">
+                                                            <form action="">
+                                                                <button class="btn btn-warning mx-2"><i
+                                                                        class="bi bi-pencil-square"></i></button>
+                                                            </form>
+                                                            <form action="{{ route('brand.destroy', $brand) }}" method="post">
+                                                                @csrf
+                                                                @method('delete')
+                                                                <button class="btn btn-danger mx-2" type="submit">
+                                                                    <i class="bi bi-trash-fill"></i>
+                                                                </button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>

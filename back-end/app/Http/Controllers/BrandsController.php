@@ -14,7 +14,11 @@ class BrandsController extends Controller
      */
     public function index()
     {
-        return view('forms.brand-form');
+        $brands = Brand::all();
+
+        return view('pages.brands', [
+            'brands' => $brands,
+        ]);
     }
 
     /**
@@ -22,7 +26,7 @@ class BrandsController extends Controller
      */
     public function create()
     {
-        //
+        return view('forms.brand-form');
     }
 
     /**
@@ -30,18 +34,18 @@ class BrandsController extends Controller
      */
     public function store(StoreBrandRequest $request)
     {
-
-        $validated = request()->validate([
-            'name' => 'required|max:20|min:1',
-            'description' => 'required|max:1000|min:4',
-            'admin_id' => 'required',
+        $validated = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
         ]);
 
         $validated['admin_id'] = auth()->user()->id;
 
-        dd($validated);
-
-        Brand::create($validated);
+        Brand::create([
+            'name' => $validated['name'],
+            'description' => $validated['description'],
+            'admin_id' => $validated['admin_id'],
+        ]);
 
         return redirect()
             ->route('brands')
@@ -77,6 +81,10 @@ class BrandsController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        //
+        $brand->delete();
+
+        return redirect()
+            ->route('brands')
+            ->with('success', 'Brand Deleted Successfully !');
     }
 }

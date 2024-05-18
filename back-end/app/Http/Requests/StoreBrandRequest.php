@@ -22,9 +22,7 @@ class StoreBrandRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:20|min:1',
-            'description' => 'required|max:1000|min:4',
-            'admin_id' => 'required',
+            //
         ];
     }
 }
