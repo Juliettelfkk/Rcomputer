@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="d-flex justify-content-center align-items-center mt-5">
-            <form action="{{ route('register') }}" method="post">
+            <form action="{{ route('register') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col">

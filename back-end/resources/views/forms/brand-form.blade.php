@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <title>Add brand</title>
 </head>
+
 <body>
     <div class="container h-100">
         <div class="row">
@@ -26,11 +28,15 @@
             </div>
         </div>
         <div class="d-flex justify-content-center align-items-center mt-5">
-            <form action="" method="post">
+            <form action="{{ route('forms.addBrand') }}" method="post">
+                @csrf
                 <div class="row">
                     <div class="col">
                         <input class="form-control form-control-lg my-2 shadow" type="text" name="name"
                             placeholder="Name">
+                        @error('first_name')
+                            <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
 
@@ -38,6 +44,9 @@
                     <div class="col">
                         <textarea class="form-control form-control-lg my-2 shadow" name="discription" cols="40" rows="3"
                             placeholder="Description"></textarea>
+                        @error('first_name')
+                            <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
 
@@ -51,4 +60,5 @@
         </div>
     </div>
 </body>
+
 </html>

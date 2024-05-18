@@ -36,10 +36,13 @@
                 </div>
             </div>
             <div class="container mt-5">
-                <div>
+                <div class="d-block">
                     @if (session()->has('success'))
-                        <div>
+                        <div class="w-75 alert alert-dismissible m-auto text-center bg-success-subtle h4 rounded-pill shadow-lg text-success"
+                            role="alert">
                             {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                aria-label="Close"></button>
                         </div>
                     @endif
                 </div>

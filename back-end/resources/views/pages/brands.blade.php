@@ -31,10 +31,19 @@
                     </form>
                 </div>
                 <div class="col my-auto text-end">
-                    <button class="btn btn-success fw-bold me-5 p-2 px-3 shadow"><i class="bi bi-person-fill me-2"></i>Log in</button>
                     <a href="{{ route('brand-form') }}">
                         <button class="btn btn-info fw-bold me-5 p-2 px-3 shadow"><i class="bi bi-plus-square-fill me-2"></i>Add</button>
                     </a>
+                </div>
+                <div class="d-block">
+                    @if (session()->has('success'))
+                        <div class="w-75 alert alert-dismissible m-auto text-center bg-success-subtle h4 rounded-pill shadow-lg text-success"
+                            role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                aria-label="Close"></button>
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="container mt-5">

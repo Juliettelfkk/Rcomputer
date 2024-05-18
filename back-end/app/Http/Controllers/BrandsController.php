@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Http\Requests\StoreBrandRequest;
 use App\Http\Requests\UpdateBrandRequest;
+use Illuminate\Http\Request;
 
 class BrandsController extends Controller
 {
@@ -13,7 +14,7 @@ class BrandsController extends Controller
      */
     public function index()
     {
-        //
+        return view('forms.brand-form');
     }
 
     /**
@@ -29,7 +30,22 @@ class BrandsController extends Controller
      */
     public function store(StoreBrandRequest $request)
     {
-        //
+
+        $validated = request()->validate([
+            'name' => 'required|max:20|min:1',
+            'description' => 'required|max:1000|min:4',
+            'admin_id' => 'required',
+        ]);
+
+        $validated['admin_id'] = auth()->user()->id;
+
+        dd($validated);
+
+        Brand::create($validated);
+
+        return redirect()
+            ->route('brands')
+            ->with('success', 'Brand added successfully !');
     }
 
     /**
