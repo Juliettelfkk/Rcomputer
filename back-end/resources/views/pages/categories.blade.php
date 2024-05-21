@@ -69,15 +69,15 @@
                                                         <td>{{ $category['id'] }}</td>
                                                         <td>{{ $category['name'] }}</td>
                                                         <td>{{ $category['description'] }}</td>
-                                                        <td class="d-flex justify-content-center">
+                                                        <td class="px-4">
                                                             <form action="">
-                                                                <button class="btn btn-warning mx-1"><i
+                                                                <button class="btn btn-warning mx-2"><i
                                                                         class="bi bi-pencil-square"></i></button>
                                                             </form>
                                                             <form action="{{ route('category.destroy', $category) }}" method="post">
                                                                 @csrf
                                                                 @method('delete')
-                                                                <button class="btn btn-danger mx-1" type="submit">
+                                                                <button class="btn btn-danger mx-2" type="submit">
                                                                     <i class="bi bi-trash-fill"></i>
                                                                 </button>
                                                             </form>
@@ -87,6 +87,9 @@
                                             </tbody>
                                         </table>
                                     </div>
+                                </div>
+                                <div class="my-2">
+                                    {{ $categories->links() }}
                                 </div>
                             </div>
                         </div>

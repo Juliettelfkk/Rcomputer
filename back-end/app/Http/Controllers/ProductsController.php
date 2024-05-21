@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Admin;
 use App\Models\Brand;
 use App\Models\Category;
+use Illuminate\Support\Facades\Storage;
 
 class ProductsController extends Controller
 {
@@ -15,8 +17,8 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        return view('pages.products' , [
+        $products = Product::orderby('created_at', 'DESC')->paginate(4);
+        return view('pages.products', [
             'products' => $products,
         ]);
     }
@@ -74,7 +76,6 @@ class ProductsController extends Controller
         return redirect()
             ->route('products')
             ->with('success', 'Product Added Successfully !');
-
     }
 
     /**
@@ -106,6 +107,7 @@ class ProductsController extends Controller
      */
     public function destroy(Product $product)
     {
+        $admin_image = $product::get('image');
         $product->delete();
 
         return redirect()

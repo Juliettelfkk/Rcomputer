@@ -69,12 +69,13 @@
                                                         <td>{{ $brand['id'] }}</td>
                                                         <td>{{ $brand['name'] }}</td>
                                                         <td>{{ $brand['description'] }}</td>
-                                                        <td class="d-flex justify-content-center">
+                                                        <td class="px-4">
                                                             <form action="">
                                                                 <button class="btn btn-warning mx-2"><i
                                                                         class="bi bi-pencil-square"></i></button>
                                                             </form>
-                                                            <form action="{{ route('brand.destroy', $brand) }}" method="post">
+                                                            <form action="{{ route('brand.destroy', $brand) }}"
+                                                                method="post">
                                                                 @csrf
                                                                 @method('delete')
                                                                 <button class="btn btn-danger mx-2" type="submit">
@@ -87,6 +88,9 @@
                                             </tbody>
                                         </table>
                                     </div>
+                                </div>
+                                <div class="my-2">
+                                    {{ $brands->links() }}
                                 </div>
                             </div>
                         </div>

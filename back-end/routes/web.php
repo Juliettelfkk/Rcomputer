@@ -76,3 +76,7 @@ Route::post('/add-brand', [BrandsController::class, 'store'])
 
 Route::delete('/brand/{brand}', [BrandsController::class, 'destroy'])
     ->name('brand.destroy');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

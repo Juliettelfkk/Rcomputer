@@ -83,7 +83,7 @@
                                                         <td>{{ $product['discount'] }}</td>
                                                         <td>{{ $product['quantity'] }}</td>
                                                         <td><img src="{{ 'storage/' . $product['image'] }}" alt="" width="100"></td>
-                                                        <td class="d-flex justify-content-center">
+                                                        <td>
                                                             <form action="" method="post">
                                                                 <button class="btn btn-warning mx-1"><i
                                                                         class="bi bi-pencil-square"></i></button>
@@ -101,6 +101,9 @@
                                             </tbody>
                                         </table>
                                     </div>
+                                </div>
+                                <div class="my-2">
+                                    {{ $products->links() }}
                                 </div>
                             </div>
                         </div>
