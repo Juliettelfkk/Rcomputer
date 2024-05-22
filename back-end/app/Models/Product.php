@@ -36,4 +36,14 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function getBrand($id){
+        $brand = Brand::find($id);
+        return $brand["name"];
+    }
+
+    public function getCategory($id){
+        $category = Category::find($id);
+        return $category['name'];
+    }
 }

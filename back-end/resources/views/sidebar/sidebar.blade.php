@@ -35,6 +35,14 @@
             </button>
         </a>
     </div>
+    <div class="d-block">
+        <a href="{{ route('Profile') }}">
+            <button class="w-75 btn btn-dark p-2 my-3 w-50 shadow rounded rounded-pill">
+                <i class="bi bi-person-circle me-2"></i>
+                Profile
+            </button>
+        </a>
+    </div>
 </div>
 <div class="d-block">
     <form action="{{ route('logout') }}" method="post">

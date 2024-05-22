@@ -71,14 +71,14 @@
                                                         <td>{{ $brand['description'] }}</td>
                                                         <td class="px-4">
                                                             <form action="">
-                                                                <button class="btn btn-warning mx-2"><i
+                                                                <button class="{{ (Auth::id() === $brand['admin_id']) ? "btn btn-warning mx-2" : "btn btn-warning mx-2 disabled" }} "><i
                                                                         class="bi bi-pencil-square"></i></button>
                                                             </form>
                                                             <form action="{{ route('brand.destroy', $brand) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('delete')
-                                                                <button class="btn btn-danger mx-2" type="submit">
+                                                                <button class="{{ (Auth::id() === $brand['admin_id']) ? "btn btn-danger mx-2" : "btn btn-danger mx-2 disabled" }} ">
                                                                     <i class="bi bi-trash-fill"></i>
                                                                 </button>
                                                             </form>

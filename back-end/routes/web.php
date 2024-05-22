@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BrandsController;
 use App\Http\Controllers\CategoriesController;
@@ -7,6 +8,17 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 
+Route::post('/profile/edit', [AdminsController::class, 'update'])
+    ->name('profile.update')
+    ->middleware('auth');
+
+Route::get('/profile/edit/{admin}', [AdminsController::class, 'edit'])
+    ->name('profile.edit')
+    ->middleware('auth');
+
+Route::get('/profile', [AdminsController::class, 'show'])
+    ->name("Profile")
+    ->middleware('auth');
 
 Route::get('/', [DashboardController::class, 'index'])
     ->name('dashboard')
@@ -44,7 +56,8 @@ Route::post('/add-product', [ProductsController::class, 'store'])
     ->middleware('auth');
 
 Route::delete('/product/{product}', [ProductsController::class, 'destroy'])
-    ->name('product.destroy');
+    ->name('product.destroy')
+    ->middleware('auth');
 
 Route::get('/categories', [CategoriesController::class, 'index'])
     ->name('categories')
@@ -59,7 +72,8 @@ Route::post('/add-category', [CategoriesController::class, 'store'])
     ->middleware('auth');
 
 Route::delete('/category/{category}', [CategoriesController::class, 'destroy'])
-    ->name('category.destroy');
+    ->name('category.destroy')
+    ->middleware('auth');
 
 Route::get('/brand', [BrandsController::class, 'index'])
     ->name('brands')
@@ -75,8 +89,7 @@ Route::post('/add-brand', [BrandsController::class, 'store'])
     ->middleware('auth');
 
 Route::delete('/brand/{brand}', [BrandsController::class, 'destroy'])
-    ->name('brand.destroy');
-
-Auth::routes();
+    ->name('brand.destroy')
+    ->middleware('auth');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

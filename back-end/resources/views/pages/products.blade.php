@@ -76,8 +76,8 @@
                                                         <td>{{ $product['id'] }}</td>
                                                         <td>{{ $product['sku'] }}</td>
                                                         <td>{{ $product['name'] }}</td>
-                                                        <td>x</td>
-                                                        <td>x</td>
+                                                        <td>{{ $product->getBrand($product['brand_id']) }}</td>
+                                                        <td>{{ $product->getCategory($product['category_id']) }}</td>
                                                         <td>{{ $product['description'] }}</td>
                                                         <td>{{ $product['price'] }}</td>
                                                         <td>{{ $product['discount'] }}</td>
@@ -85,14 +85,14 @@
                                                         <td><img src="{{ 'storage/' . $product['image'] }}" alt="" width="100"></td>
                                                         <td>
                                                             <form action="" method="post">
-                                                                <button class="btn btn-warning mx-1"><i
+                                                                <button class="{{ (Auth::id() === $product['admin_id']) ? "btn btn-warning mx-1" : "btn btn-warning mx-1 disabled" }}"><i
                                                                         class="bi bi-pencil-square"></i></button>
                                                             </form>
                                                             <form action="{{ route('product.destroy', $product) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('delete')
-                                                                <button class="btn btn-danger mx-1"><i
+                                                                <button class="{{ (Auth::id() === $product['admin_id']) ? "btn btn-danger mx-1" : "btn btn-danger mx-1 disabled" }}"><i
                                                                         class="bi bi-trash-fill"></i></button>
                                                             </form>
                                                         </td>

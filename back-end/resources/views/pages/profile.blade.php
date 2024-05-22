@@ -22,27 +22,14 @@
         <div class="col-lg-10 continaer image">
             <div class="row  mt-3">
                 <div class="col text-start">
-                    <h1 class="display-3 fw-bold text-dark">Dashboard</h1>
+                    <h1 class="display-3 fw-bold text-dark">Profile Page</h1>
                 </div>
                 <div class="col text-center m-auto mt-4">
-                    <form class="d-flex">
-                        <input class="form-control me-2 shadow" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success fw-bold shadow" type="submit">Search</button>
-                    </form>
-                </div>
-                <div class="col text-end m-auto mt-4">
-                    <a href="{{ route('Profile') }}" class="d-flex justify-content-end p-auto links">
-                        <div class="my-auto">
-                            <span class="h4 p-3 text-dark">{{ $fullName }}</span>
-                        </div>
-                        <div class="my-auto">
-                            <img src="{{ $image }}" alt="admin image" class="rounded-pill shadow-lg me-5"
-                                width="50px" height="50px">
-                        </div>
+                    <a href="{{ route('profile.edit' , $admin) }}" class="d-flex justify-content-end me-5 p-auto links">
+                        <button class="btn btn-info fw-bold me-5 p-2 px-3 shadow"><i
+                                class="bi bi-pencil-square me-2"></i>Edit</button>
                     </a>
                 </div>
-            </div>
-            <div class="container mt-5">
                 <div class="d-block">
                     @if (session()->has('success'))
                         <div class="w-75 alert alert-dismissible m-auto text-center bg-success-subtle h4 rounded-pill shadow-lg text-success"
@@ -53,13 +40,14 @@
                         </div>
                     @endif
                 </div>
-                <div class="row mt-5">
-                    <a href="{{ route('products') }}"
-                        class="links col px-5 py-3 m-2 bg-light border-5 border-start border-danger shadow rounded-5">
-                        <div>
+            </div>
+            <div class="container mt-5">
+                <div class="d-flex flex-column mt-5">
+                    <div class="row mb-5">
+                        <div class="col links col px-5 py-3 m-2 bg-light border-5 border-start border-danger shadow rounded-5">
                             <div class="d-block">
                                 <div>
-                                    <h3 class="display-5 text-danger">Products</h3>
+                                    <h3 class="display-5 text-danger">Your Products</h3>
                                 </div>
                                 <div class="row">
                                     <div class="col">
@@ -71,13 +59,10 @@
                                 </div>
                             </div>
                         </div>
-                    </a>
-                    <a href="{{ route('brands') }}"
-                        class="links col px-5 py-3 m-2 bg-light border-5 border-start border-info shadow rounded-5">
-                        <div>
+                        <div  class="col links col px-5 py-3 m-2 bg-light border-5 border-start border-info shadow rounded-5">
                             <div class="d-block">
                                 <div>
-                                    <h3 class="display-5 text-info">Brands</h3>
+                                    <h3 class="display-5 text-info">Your Brands</h3>
                                 </div>
                                 <div class="row">
                                     <div class="col">
@@ -89,13 +74,10 @@
                                 </div>
                             </div>
                         </div>
-                    </a>
-                    <a href="{{ route('categories') }}"
-                        class="links col px-5 py-3 m-2 bg-light border-5 border-start border-warning shadow rounded-5">
-                        <div>
+                        <div class="col links col px-5 py-3 m-2 bg-light border-5 border-start border-warning shadow rounded-5">
                             <div class="d-block">
                                 <div>
-                                    <h3 class="display-5 text-warning">Categories</h3>
+                                    <h3 class="display-5 text-warning">Your Cateories</h3>
                                 </div>
                                 <div class="row">
                                     <div class="col">
@@ -108,26 +90,27 @@
                                 </div>
                             </div>
                         </div>
-                    </a>
-                    <a href="{{ route('orders') }}"
-                        class=" links col px-5 py-3 m-2 bg-light border-5 border-start border-success shadow rounded-5">
-                        <div>
-                            <div class="d-block">
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <img src="{{ $image }}" alt="admin image" class="rounded-pill shadow-lg m-2"
+                                width="250px" height="250px">
+                        </div>
+                        <div class="col">
+                            <div class="mt-5">
                                 <div>
-                                    <h3 class="display-5 text-success">Orders</h3>
+                                    <span class="display-5 mt-5 fw-bold">Full Name : </span>
+                                    <spna class="display-5 m-5">{{ $name }}</spna>
                                 </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <h4 class="fw-bold text-dark">{{ $orders_number }}</h4>
-                                    </div>
-                                    <div class="col text-end m-auto">
-                                        <i class="bi bi-person-lines-fill"
-                                            style="font-size: 1.5rem; color: rgb(0, 0, 0);"></i>
-                                    </div>
+                            </div>
+                            <div class="mt-5">
+                                <div>
+                                    <span class="display-5 mt-5 fw-bold">Email : </span>
+                                    <spna class="display-5 m-5">{{ $email }}</spna>
                                 </div>
                             </div>
                         </div>
-                    </a>
+                    </div>
                 </div>
             </div>
         </div>
