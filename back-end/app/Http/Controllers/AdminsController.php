@@ -44,7 +44,8 @@ class AdminsController extends Controller
         $logInUser = $admin::find(auth()->user()->id);
 
         $auth_image = ('storage/' . $logInUser->image);
-        $auth_name = ($logInUser->first_name . ' ' . $logInUser->last_name);
+        $auth_first_name = $logInUser->first_name;
+        $auth_last_name = $logInUser->last_name;
         $email = $logInUser->email;
 
         $admin = Admin::find($logInUser->id);
@@ -54,7 +55,8 @@ class AdminsController extends Controller
 
         return view('pages.profile', [
             'image' => $auth_image,
-            'name' => $auth_name,
+            'first_name' => $auth_first_name,
+            'last_name' => $auth_last_name,
             'email' => $email,
             'categories_number' => $numberOfCategories,
             'brands_number' => $numberOfBrands,
@@ -91,8 +93,8 @@ class AdminsController extends Controller
         $updateAdmin->last_name = request()->get('last_name');
         $updateAdmin->email = request()->get('email');
         $updateAdmin->image = $image ?? $updateAdmin->image;
-
         $updateAdmin->save();
+
         $updateUser->name = request()->get('first_name');
         $updateUser->email = request()->get('email');
         $updateUser->save();

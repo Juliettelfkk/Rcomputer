@@ -22,15 +22,15 @@
         <div class="col-lg-10 continaer image">
             <div class="row  mt-3">
                 <div class="col text-start">
-                    <h1 class="display-3 fw-bold text-dark">Profile Page</h1>
+                    <h1 class="display-5 fw-bold text-dark">Profile Page</h1>
                 </div>
                 <div class="col text-center m-auto mt-4">
-                    <a href="{{ route('profile.edit' , $admin) }}" class="d-flex justify-content-end me-5 p-auto links">
+                    <a href="{{ route('profile.edit', $admin) }}" class="d-flex justify-content-end me-5 p-auto links">
                         <button class="btn btn-info fw-bold me-5 p-2 px-3 shadow"><i
                                 class="bi bi-pencil-square me-2"></i>Edit</button>
                     </a>
                 </div>
-                <div class="d-block">
+                <div class="d-block mt-2">
                     @if (session()->has('success'))
                         <div class="w-75 alert alert-dismissible m-auto text-center bg-success-subtle h4 rounded-pill shadow-lg text-success"
                             role="alert">
@@ -42,9 +42,41 @@
                 </div>
             </div>
             <div class="container mt-5">
+                <div class="card padding-5 rounded rounded-5 shadow">
+                    <div class="row">
+                        <div class="col">
+                            <div class="m-5">
+                                <div>
+                                    <span class="display-5 mt-5 fw-bold">First Name : </span>
+                                    <spna class="display-5 m-5">{{ $first_name }}</spna>
+                                </div>
+                            </div>
+                            <div class="m-5">
+                                <div>
+                                    <span class="display-5 mt-5 fw-bold">Last Name : </span>
+                                    <spna class="display-5 m-5">{{ $last_name }}</spna>
+                                </div>
+                            </div>
+                            <div class="m-5">
+                                <div>
+                                    <span class="display-5 mt-5 fw-bold">Email : </span>
+                                    <spna class="display-5 m-5">{{ $email }}</spna>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 m-auto text-center">
+                            <img src="{{ $image }}" alt="admin image" class="rounded-pill shadow my-5"
+                                width="150px" height="150px">
+                        </div>
+
+                    </div>
+                </div>
+
+
                 <div class="d-flex flex-column mt-5">
                     <div class="row mb-5">
-                        <div class="col links col px-5 py-3 m-2 bg-light border-5 border-start border-danger shadow rounded-5">
+                        <div
+                            class="col links col px-5 py-3 m-2 bg-light border-5 border-start border-danger shadow rounded-5">
                             <div class="d-block">
                                 <div>
                                     <h3 class="display-5 text-danger">Your Products</h3>
@@ -59,7 +91,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div  class="col links col px-5 py-3 m-2 bg-light border-5 border-start border-info shadow rounded-5">
+                        <div
+                            class="col links col px-5 py-3 m-2 bg-light border-5 border-start border-info shadow rounded-5">
                             <div class="d-block">
                                 <div>
                                     <h3 class="display-5 text-info">Your Brands</h3>
@@ -74,7 +107,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col links col px-5 py-3 m-2 bg-light border-5 border-start border-warning shadow rounded-5">
+                        <div
+                            class="col links col px-5 py-3 m-2 bg-light border-5 border-start border-warning shadow rounded-5">
                             <div class="d-block">
                                 <div>
                                     <h3 class="display-5 text-warning">Your Cateories</h3>
@@ -91,26 +125,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-4">
-                            <img src="{{ $image }}" alt="admin image" class="rounded-pill shadow-lg m-2"
-                                width="250px" height="250px">
-                        </div>
-                        <div class="col">
-                            <div class="mt-5">
-                                <div>
-                                    <span class="display-5 mt-5 fw-bold">Full Name : </span>
-                                    <spna class="display-5 m-5">{{ $name }}</spna>
-                                </div>
-                            </div>
-                            <div class="mt-5">
-                                <div>
-                                    <span class="display-5 mt-5 fw-bold">Email : </span>
-                                    <spna class="display-5 m-5">{{ $email }}</spna>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>

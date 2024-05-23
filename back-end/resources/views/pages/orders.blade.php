@@ -22,7 +22,7 @@
         <div class="col-lg-10 continaer image">
             <div class="row mt-3">
                 <div class="col text-start">
-                    <h1 class="display-3 fw-bold text-dark">Orders</h1>
+                    <h1 class="display-5 fw-bold text-dark">Orders</h1>
                 </div>
                 <div class="col text-center m-auto mt-4">
                     <form class="d-flex">
@@ -31,9 +31,7 @@
                     </form>
                 </div>
                 <div class="col my-auto text-end">
-                    <a href="{{ route('brand-form') }}">
-                        <button class="btn btn-info fw-bold me-5 p-2 px-3 shadow"><i class="bi bi-plus-square-fill me-2"></i>Add</button>
-                    </a>
+
                 </div>
             </div>
             <div class="container mt-5">

@@ -7,6 +7,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Brand;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ProductsController extends Controller
@@ -16,10 +17,14 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::orderby('created_at', 'DESC')->paginate(4);
+        $products = Product::orderby('created_at', 'DESC');
+
+        if (request()->has('search')) {
+            $products = $products->where('name', 'like', '%' . request()->get('search') . '%');
+        }
 
         return view('pages.products', [
-            'products' => $products,
+            'products' => $products->paginate(4),
         ]);
     }
 
@@ -91,7 +96,13 @@ class ProductsController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $brands = Brand::all();
+        $categories = Category::all();
+        return view('edit.product', [
+            'product' => $product,
+            'brands' => $brands,
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -99,7 +110,28 @@ class ProductsController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        $productUpdated = Product::find($product->id);
+
+        $productUpdated->name = $request->get('name');
+        $productUpdated->description = $request->get('description');
+        $productUpdated->price = $request->get('price');
+        $productUpdated->discount = $request->get('discount');
+        $productUpdated->quantity = $request->get('quantity');
+        $productUpdated->sku = $request->get('sku');
+        $productUpdated->category_id = $request->get('category');
+        $productUpdated->brand_id = $request->get('brand');
+        $productUpdated->admin_id = Auth::user()->id;
+        if(request()->has('image')){
+            $imagePath = request()->file('image')->store('products', 'public');
+            $image = $imagePath;
+            Storage::disk('public')->delete($productUpdated->image ?? '');
+        }
+        $productUpdated->image = $image ?? $productUpdated->image;
+        $productUpdated->save();
+
+        return redirect()
+            ->route('products')
+            ->with('success', 'Product Updated Successfully !');
     }
 
     /**
@@ -107,7 +139,6 @@ class ProductsController extends Controller
      */
     public function destroy(Product $product)
     {
-
         Storage::disk('public')->delete($product->image ?? '');
         $admin_image = $product::get('image');
         $product->delete();

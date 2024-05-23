@@ -11,29 +11,29 @@
     </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/css/style.css">
-    <title>Add brand</title>
+    <title>Add Category</title>
 </head>
 
 <body>
     <div class="container h-100">
         <div class="row">
             <div class="col text-start">
-                <h1 class="display-5 fw-bold text-dark">Add Brand</h1>
+                <h1 class="display-5 fw-bold text-dark">Add Category</h1>
             </div>
             <div class="col text-end my-auto">
-                <a href="{{ route('brands') }}">
+                <a href="{{ route('categories') }}">
                     <button class="btn btn-danger fw-bold shadow"><i
                             class="bi bi-x-square-fill me-2"></i></i>Cancel</button>
                 </a>
             </div>
         </div>
         <div class="d-flex justify-content-center align-items-center mt-5">
-            <form action="{{ route('forms.addBrand') }}" method="post"  enctype="multipart/form-data">
+            <form action="{{ route('category.update', $category) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col">
                         <input class="form-control form-control-lg my-2 shadow" type="text" name="name"
-                            placeholder="Name">
+                            placeholder="Name" value="{{ $category->name }}">
                         @error('name')
                             <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                         @enderror
@@ -43,7 +43,7 @@
                 <div class="row ">
                     <div class="col">
                         <textarea class="form-control form-control-lg my-2 shadow" name="description" cols="40" rows="3"
-                            placeholder="Description"></textarea>
+                            placeholder="Description">{{ $category->description }}</textarea>
                         @error('description')
                             <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                         @enderror

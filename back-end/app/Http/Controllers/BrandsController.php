@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Http\Requests\StoreBrandRequest;
 use App\Http\Requests\UpdateBrandRequest;
-use Illuminate\Http\Request;
 
 class BrandsController extends Controller
 {
@@ -14,10 +13,14 @@ class BrandsController extends Controller
      */
     public function index()
     {
-        $brands = Brand::orderby('created_at', 'DESC')->paginate(4);
+        $brands = Brand::orderby('created_at', 'DESC');
+
+        if (request()->has('search')) {
+            $brands = $brands->where('name', 'like', '%' . request()->get('search') . '%');
+        }
 
         return view('pages.brands', [
-            'brands' => $brands,
+            'brands' => $brands->paginate(4),
         ]);
     }
 
@@ -65,7 +68,9 @@ class BrandsController extends Controller
      */
     public function edit(Brand $brand)
     {
-        //
+        return view('edit.brand', [
+            'brand' => $brand,
+        ]);
     }
 
     /**
@@ -73,7 +78,13 @@ class BrandsController extends Controller
      */
     public function update(UpdateBrandRequest $request, Brand $brand)
     {
-        //
+        $brand->name = $request->get('name');
+        $brand->description = $request->get('description');
+        $brand->save();
+
+        return redirect()
+            ->route('brands')
+            ->with('success', 'Brand Updated Successfully !');
     }
 
     /**

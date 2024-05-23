@@ -55,6 +55,14 @@ Route::post('/add-product', [ProductsController::class, 'store'])
     ->name('forms.addProduct')
     ->middleware('auth');
 
+Route::get('/product/edit/{product}', [ProductsController::class, 'edit'])
+    ->name('product-edit')
+    ->middleware('auth');
+
+Route::post('/product/update/{product}', [ProductsController::class, 'update'])
+    ->name('product.update')
+    ->middleware('auth');
+
 Route::delete('/product/{product}', [ProductsController::class, 'destroy'])
     ->name('product.destroy')
     ->middleware('auth');
@@ -75,6 +83,14 @@ Route::delete('/category/{category}', [CategoriesController::class, 'destroy'])
     ->name('category.destroy')
     ->middleware('auth');
 
+Route::get('/category/edit/{category}', [CategoriesController::class, 'edit'])
+    ->name('category.edit')
+    ->middleware('auth');
+
+Route::post('/category/update/{category}', [CategoriesController::class, 'update'])
+    ->name('category.update')
+    ->middleware('auth');
+
 Route::get('/brand', [BrandsController::class, 'index'])
     ->name('brands')
     ->middleware('auth');
@@ -90,6 +106,14 @@ Route::post('/add-brand', [BrandsController::class, 'store'])
 
 Route::delete('/brand/{brand}', [BrandsController::class, 'destroy'])
     ->name('brand.destroy')
+    ->middleware('auth');
+
+Route::get('/brand/edit/{brand}', [BrandsController::class, 'edit'])
+    ->name('brand.edit')
+    ->middleware('auth');
+
+Route::post('/brand/update/{brand}', [BrandsController::class, 'update'])
+    ->name('brand.update')
     ->middleware('auth');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

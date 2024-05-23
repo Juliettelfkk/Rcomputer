@@ -22,11 +22,11 @@
         <div class="col-lg-10 continaer image">
             <div class="row mt-3">
                 <div class="col text-start">
-                    <h1 class="display-3 fw-bold text-dark">Categories</h1>
+                    <h1 class="display-5 fw-bold text-dark">Categories</h1>
                 </div>
                 <div class="col text-center m-auto mt-4">
-                    <form class="d-flex">
-                        <input class="form-control me-2 shadow" type="search" placeholder="Search" aria-label="Search">
+                    <form action="{{ route('categories') }}" class="d-flex">
+                        <input class="form-control me-2 shadow" name="search" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success fw-bold shadow" type="submit">Search</button>
                     </form>
                 </div>
@@ -70,7 +70,8 @@
                                                         <td>{{ $category['name'] }}</td>
                                                         <td>{{ $category['description'] }}</td>
                                                         <td class="px-4">
-                                                            <form action="">
+                                                            <form action="{{ route('category.edit', $category) }}" method="get">
+                                                                @csrf
                                                                 <button class="{{ (Auth::id() === $category['admin_id']) ? "btn btn-warning mx-2" : "btn btn-warning mx-2 disabled" }} "><i
                                                                         class="bi bi-pencil-square"></i></button>
                                                             </form>

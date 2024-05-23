@@ -18,7 +18,7 @@
     <div class="container h-100">
         <div class="row">
             <div class="col text-start">
-                <h1 class="display-3 fw-bold text-dark">Add Category</h1>
+                <h1 class="display-5 fw-bold text-dark">Add Category</h1>
             </div>
             <div class="col text-end my-auto">
                 <a href="{{ route('categories') }}">

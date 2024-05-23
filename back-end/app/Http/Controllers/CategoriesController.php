@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
-use App\Models\Admin;
 
 class CategoriesController extends Controller
 {
@@ -14,10 +13,14 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Category::orderby('created_at', 'DESC')->paginate(4);
+        $categories = Category::orderby('created_at', 'DESC');
+
+        if(request()->has('search')){
+            $categories = $categories->where('name' , 'like', '%' . request()->get('search') . '%');
+        }
 
         return view('pages.categories', [
-            'categories' => $categories,
+            'categories' => $categories->paginate(4),
         ]);
     }
 
@@ -65,7 +68,9 @@ class CategoriesController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('edit.category', [
+            'category' => $category,
+        ]);
     }
 
     /**
@@ -73,7 +78,13 @@ class CategoriesController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $category->name = $request->get('name');
+        $category->description = $request->get('description');
+        $category->save();
+
+        return redirect()
+            ->route('categories')
+            ->with('success', 'Category Updated Successfully !');
     }
 
     /**

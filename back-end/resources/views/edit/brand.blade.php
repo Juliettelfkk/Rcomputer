@@ -28,12 +28,12 @@
             </div>
         </div>
         <div class="d-flex justify-content-center align-items-center mt-5">
-            <form action="{{ route('forms.addBrand') }}" method="post"  enctype="multipart/form-data">
+            <form action="{{ route('brand.update', $brand) }}" method="post"  enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col">
                         <input class="form-control form-control-lg my-2 shadow" type="text" name="name"
-                            placeholder="Name">
+                            placeholder="Name" value="{{ $brand->name }}">
                         @error('name')
                             <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                         @enderror
@@ -43,7 +43,7 @@
                 <div class="row ">
                     <div class="col">
                         <textarea class="form-control form-control-lg my-2 shadow" name="description" cols="40" rows="3"
-                            placeholder="Description"></textarea>
+                            placeholder="Description">{{ $brand->description }}</textarea>
                         @error('description')
                             <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                         @enderror

@@ -22,11 +22,11 @@
         <div class="col-lg-10 continaer image">
             <div class="row mt-3">
                 <div class="col text-start">
-                    <h1 class="display-3 fw-bold text-dark">Products</h1>
+                    <h1 class="display-5 fw-bold text-dark">Products</h1>
                 </div>
                 <div class="col text-center m-auto mt-4">
-                    <form class="d-flex">
-                        <input class="form-control me-2 shadow" type="search" placeholder="Search" aria-label="Search">
+                    <form action="{{ route('products') }}" class="d-flex">
+                        <input class="form-control me-2 shadow" type="search" name="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success fw-bold shadow" type="submit">Search</button>
                     </form>
                 </div>
@@ -84,7 +84,8 @@
                                                         <td>{{ $product['quantity'] }}</td>
                                                         <td><img src="{{ 'storage/' . $product['image'] }}" alt="" width="100"></td>
                                                         <td>
-                                                            <form action="" method="post">
+                                                            <form action="{{ route('product-edit', $product) }}" method="get">
+                                                                @csrf
                                                                 <button class="{{ (Auth::id() === $product['admin_id']) ? "btn btn-warning mx-1" : "btn btn-warning mx-1 disabled" }}"><i
                                                                         class="bi bi-pencil-square"></i></button>
                                                             </form>

@@ -22,7 +22,7 @@
         <div class="col-lg-10 continaer image">
             <div class="row  mt-3">
                 <div class="col text-start">
-                    <h1 class="display-3 fw-bold text-dark">Dashboard</h1>
+                    <h1 class="display-5 fw-bold text-dark">Dashboard</h1>
                 </div>
                 <div class="col text-center m-auto mt-4">
                     <form class="d-flex">
