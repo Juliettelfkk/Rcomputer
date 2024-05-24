@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BrandsController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 
@@ -114,6 +115,14 @@ Route::get('/brand/edit/{brand}', [BrandsController::class, 'edit'])
 
 Route::post('/brand/update/{brand}', [BrandsController::class, 'update'])
     ->name('brand.update')
+    ->middleware('auth');
+
+Route::get('messages', [MessagesController::class, 'index'])
+    ->name('messages')
+    ->middleware('auth');
+
+Route::delete('/message/{message}', [MessagesController::class, 'destroy'])
+    ->name('message.destroy')
     ->middleware('auth');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

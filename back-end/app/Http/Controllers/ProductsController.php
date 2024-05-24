@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Http\Resources\ProductsResource;
 use App\Models\Brand;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use PDO;
 
 class ProductsController extends Controller
 {
@@ -146,5 +148,11 @@ class ProductsController extends Controller
         return redirect()
             ->route('products')
             ->with('success', 'Product Deleted Successfully !');
+    }
+
+    public function allProducts(){
+        return ProductsResource::collection(
+            Product::all(),
+        );
     }
 }

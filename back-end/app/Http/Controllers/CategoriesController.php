@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Http\Resources\CategoriesResource;
 
 class CategoriesController extends Controller
 {
@@ -97,5 +98,11 @@ class CategoriesController extends Controller
         return redirect()
             ->route('categories')
             ->with('success', 'Category Deleted Successfully !');
+    }
+
+    public function allCategories(){
+        return CategoriesResource::collection(
+            Category::all()
+        );
     }
 }
