@@ -1,8 +1,8 @@
-// eslint-disable-next-line no-unused-vars
 import React from 'react'
 import { Link } from 'react-router-dom'
 import CategoryHome from './CategoryHome'
 import HomeProducts from './HomeProducts'
+import HomeProductsOnSale from './HomeProductsOnSale'
 
 export default function Home() {
   return (
@@ -50,8 +50,10 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <CategoryHome />
-      <HomeProducts/>
+    <CategoryHome/>
+    <HomeProducts/>  
+  <HomeProductsOnSale/>
+    {/* new produtcs */}
     </div>
   )
 }
