@@ -12,5 +12,16 @@ class Brand extends Model
     protected $fillable = [
         'name',
         'description',
+        'admin_id',
     ];
+
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class);
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

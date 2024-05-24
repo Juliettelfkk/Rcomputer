@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,11 +13,12 @@
     <link rel="stylesheet" href="/css/style.css">
     <title>Add brand</title>
 </head>
+
 <body>
     <div class="container h-100">
         <div class="row">
             <div class="col text-start">
-                <h1 class="display-3 fw-bold text-dark">Add Brand</h1>
+                <h1 class="display-5 fw-bold text-dark">Add Brand</h1>
             </div>
             <div class="col text-end my-auto">
                 <a href="{{ route('brands') }}">
@@ -26,18 +28,25 @@
             </div>
         </div>
         <div class="d-flex justify-content-center align-items-center mt-5">
-            <form action="" method="post">
+            <form action="{{ route('forms.addBrand') }}" method="post"  enctype="multipart/form-data">
+                @csrf
                 <div class="row">
                     <div class="col">
                         <input class="form-control form-control-lg my-2 shadow" type="text" name="name"
                             placeholder="Name">
+                        @error('name')
+                            <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
 
                 <div class="row ">
                     <div class="col">
-                        <textarea class="form-control form-control-lg my-2 shadow" name="discription" cols="40" rows="3"
+                        <textarea class="form-control form-control-lg my-2 shadow" name="description" cols="40" rows="3"
                             placeholder="Description"></textarea>
+                        @error('description')
+                            <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
 
@@ -51,4 +60,5 @@
         </div>
     </div>
 </body>
+
 </html>

@@ -18,7 +18,7 @@
     <div class="container h-100">
         <div class="row">
             <div class="col text-start">
-                <h1 class="display-3 fw-bold text-dark">Add Product</h1>
+                <h1 class="display-5 fw-bold text-dark">Add Product</h1>
             </div>
             <div class="col text-end my-auto">
                 <a href="{{ route('products') }}">
@@ -29,62 +29,87 @@
         </div>
 
         <div class="d-flex justify-content-center align-items-center mt-5">
-            <form action="" method="post">
+            <form action="{{ route('forms.addProduct') }}" method="post" enctype="multipart/form-data">
+                @csrf
                 <div class="row">
                     <div class="col">
                         <input class="form-control form-control-lg my-2 shadow" type="text" name="name"
-                            placeholder="Name">
+                            placeholder="Name" required>
+                        @error('name')
+                            <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="col">
                         <input class="form-control form-control-lg my-2 shadow" type="text" name="sku"
-                            placeholder="SKU">
+                            placeholder="SKU" required>
+                        @error('sku')
+                            <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="row ">
                     <div class="col">
-                        <select name="brand" class="form-control form-select form-control-lg my-2 shadow">
+                        <select name="brand" class="form-control form-select form-control-lg my-2 shadow" required>
                             <option selected>Brand</option>
                             <hr>
-                            <option value="invedia">Invidia</option>
-                            <option value="amd">AMD</option>
-                            <option value="intel">Intel</option>
+                            @foreach ($brands as $brand)
+                                <option value="{{ $brand['id'] }}">{{ $brand['name'] }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="col">
-                        <select name="category" class="form-control form-select form-control-lg my-2 shadow">
+                        <select name="category" class="form-control form-select form-control-lg my-2 shadow" required>
                             <option selected>Categories</option>
                             <hr>
-                            <option value="invedia">Laptop</option>
-                            <option value="amd">Disctop</option>
-                            <option value="intel">Accessories</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category['id'] }}">{{ $category['name'] }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
                 <div class="row ">
                     <div class="col">
                         <div class="input-group">
-                            <input placeholder="Price" class="form-control form-control-lg my-2 shadow" type="number" min="0"  name="price">
+                            <input placeholder="Price" class="form-control form-control-lg my-2 shadow" type="number"
+                                min="0" name="price" required>
+                            @error('price')
+                                <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                     <div class="col">
-                        <input placeholder="Discount" class="form-control form-control-lg my-2 shadow" type="number" min="0" name="discount">
+                        <input placeholder="Discount" class="form-control form-control-lg my-2 shadow" type="number"
+                            min="0" name="discount" required>
+                        @error('discount')
+                            <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="row ">
                     <div class="col">
-                        <input placeholder="Quantity" class="form-control form-control-lg my-2 shadow" type="number" min="0" name="quantity">
+                        <input placeholder="Quantity" class="form-control form-control-lg my-2 shadow" type="number"
+                            min="0" name="quantity" required>
+                        @error('quantity')
+                            <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="row ">
                     <div class="col">
-                        <textarea class="form-control form-control-lg my-2 shadow" name="discription" cols="40" rows="3"
+                        <textarea class="form-control form-control-lg my-2 shadow" name="description" required cols="40" rows="3"
                             placeholder="Description"></textarea>
+                        @error('description')
+                            <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="row ">
                     <div class="col">
-                        <input class="form-control form-control-lg my-2 shadow" type="file" name="images"
-                            placeholder="product images">
+                        <input class="form-control form-control-lg my-2 shadow" type="file" name="image"
+                            placeholder="product images" required>
+                        @error('image')
+                            <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="row ">

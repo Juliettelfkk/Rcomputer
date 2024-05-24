@@ -22,19 +22,29 @@
         <div class="col-lg-10 continaer image">
             <div class="row mt-3">
                 <div class="col text-start">
-                    <h1 class="display-3 fw-bold text-dark">Brands</h1>
+                    <h1 class="display-5 fw-bold text-dark">Brands</h1>
                 </div>
                 <div class="col text-center m-auto mt-4">
-                    <form class="d-flex">
-                        <input class="form-control me-2 shadow" type="search" placeholder="Search" aria-label="Search">
+                    <form action="{{ route('brands') }}" class="d-flex">
+                        <input class="form-control me-2 shadow" type="search" name="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success fw-bold shadow" type="submit">Search</button>
                     </form>
                 </div>
                 <div class="col my-auto text-end">
-                    <button class="btn btn-success fw-bold me-5 p-2 px-3 shadow"><i class="bi bi-person-fill me-2"></i>Log in</button>
                     <a href="{{ route('brand-form') }}">
-                        <button class="btn btn-info fw-bold me-5 p-2 px-3 shadow"><i class="bi bi-plus-square-fill me-2"></i>Add</button>
+                        <button class="btn btn-info fw-bold me-5 p-2 px-3 shadow"><i
+                                class="bi bi-plus-square-fill me-2"></i>Add</button>
                     </a>
+                </div>
+                <div class="d-block">
+                    @if (session()->has('success'))
+                        <div class="w-75 alert alert-dismissible m-auto text-center bg-success-subtle h4 rounded-pill shadow-lg text-success"
+                            role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                aria-label="Close"></button>
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="container mt-5">
@@ -54,42 +64,34 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>AMD</td>
-                                                    <td>this company create processors</td>
-                                                    <td>
-                                                        <button class="btn btn-warning"><i
-                                                                class="bi bi-pencil-square"></i></button>
-                                                        <button class="btn btn-danger"><i
-                                                                class="bi bi-trash-fill"></i></button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>nvidia</td>
-                                                    <td>this company create graphic cards</td>
-                                                    <td>
-                                                        <button class="btn btn-warning"><i
-                                                                class="bi bi-pencil-square"></i></button>
-                                                        <button class="btn btn-danger"><i
-                                                                class="bi bi-trash-fill"></i></button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>intel</td>
-                                                    <td>this company create processor</td>
-                                                    <td>
-                                                        <button class="btn btn-warning"><i
-                                                                class="bi bi-pencil-square"></i></button>
-                                                        <button class="btn btn-danger"><i
-                                                                class="bi bi-trash-fill"></i></button>
-                                                    </td>
-                                                </tr>
+                                                @foreach ($brands as $brand)
+                                                    <tr>
+                                                        <td>{{ $brand['id'] }}</td>
+                                                        <td>{{ $brand['name'] }}</td>
+                                                        <td>{{ $brand['description'] }}</td>
+                                                        <td class="px-4">
+                                                            <form action="{{ route('brand.edit', $brand) }}" method="get">
+                                                                @csrf
+                                                                <button class="{{ (Auth::id() === $brand['admin_id']) ? "btn btn-warning mx-2" : "btn btn-warning mx-2 disabled" }} "><i
+                                                                        class="bi bi-pencil-square"></i></button>
+                                                            </form>
+                                                            <form action="{{ route('brand.destroy', $brand) }}"
+                                                                method="post">
+                                                                @csrf
+                                                                @method('delete')
+                                                                <button class="{{ (Auth::id() === $brand['admin_id']) ? "btn btn-danger mx-2" : "btn btn-danger mx-2 disabled" }} ">
+                                                                    <i class="bi bi-trash-fill"></i>
+                                                                </button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
+                                </div>
+                                <div class="my-2">
+                                    {{ $brands->links() }}
                                 </div>
                             </div>
                         </div>

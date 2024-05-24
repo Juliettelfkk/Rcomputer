@@ -1,42 +1,119 @@
 <?php
 
+use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BrandsController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::post('/profile/edit', [AdminsController::class, 'update'])
+    ->name('profile.update')
+    ->middleware('auth');
 
-Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::get('/profile/edit/{admin}', [AdminsController::class, 'edit'])
+    ->name('profile.edit')
+    ->middleware('auth');
+
+Route::get('/profile', [AdminsController::class, 'show'])
+    ->name("Profile")
+    ->middleware('auth');
+
+Route::get('/', [DashboardController::class, 'index'])
+    ->name('dashboard')
+    ->middleware('auth');
+
+Route::get('/register', [AuthController::class, 'register'])
+    ->name('register');
 
 Route::post('/register', [AuthController::class, 'store']);
 
-Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/login', [AuthController::class, 'login'])
+    ->name('login');
 
-Route::get('/products', function(){
-    return view('pages.products');
-})->name('products');
+Route::post('/login', [AuthController::class, 'authenticate']);
 
-Route::get('/brands', function(){
-    return view('pages.brands');
-})->name('brands');
+Route::post('/logout', [AuthController::class, 'logout'])
+    ->name('logout');
 
-Route::get('/categories', function(){
-    return view('pages.categories');
-})->name('categories');
 
-Route::get('/orders', function(){
+Route::get('/orders', function () {
     return view('pages.orders');
 })->name('orders');
 
-Route::get('/add-product', function () {
-    return view('forms.product-form');
-})->name('product-form');
 
-Route::get('/add-category', function () {
-    return view('forms.category-form');
-})->name('category-form');
+Route::get('/product', [ProductsController::class, 'index'])
+    ->name('products')
+    ->middleware('auth');
 
-Route::get('/add-brand', function () {
-    return view('forms.brand-form');
-})->name('brand-form');
+Route::get('/add-product', [ProductsController::class, 'create'])
+    ->name('product-form')
+    ->middleware('auth');
+
+Route::post('/add-product', [ProductsController::class, 'store'])
+    ->name('forms.addProduct')
+    ->middleware('auth');
+
+Route::get('/product/edit/{product}', [ProductsController::class, 'edit'])
+    ->name('product-edit')
+    ->middleware('auth');
+
+Route::post('/product/update/{product}', [ProductsController::class, 'update'])
+    ->name('product.update')
+    ->middleware('auth');
+
+Route::delete('/product/{product}', [ProductsController::class, 'destroy'])
+    ->name('product.destroy')
+    ->middleware('auth');
+
+Route::get('/categories', [CategoriesController::class, 'index'])
+    ->name('categories')
+    ->middleware('auth');
+
+Route::get('/add-category', [CategoriesController::class, 'create'])
+    ->name('category-form')
+    ->middleware('auth');
+
+Route::post('/add-category', [CategoriesController::class, 'store'])
+    ->name('forms.addCategory')
+    ->middleware('auth');
+
+Route::delete('/category/{category}', [CategoriesController::class, 'destroy'])
+    ->name('category.destroy')
+    ->middleware('auth');
+
+Route::get('/category/edit/{category}', [CategoriesController::class, 'edit'])
+    ->name('category.edit')
+    ->middleware('auth');
+
+Route::post('/category/update/{category}', [CategoriesController::class, 'update'])
+    ->name('category.update')
+    ->middleware('auth');
+
+Route::get('/brand', [BrandsController::class, 'index'])
+    ->name('brands')
+    ->middleware('auth');
+
+Route::get('/add-brand', [BrandsController::class, 'create'])
+    ->name('brand-form')
+    ->middleware('auth');
+
+
+Route::post('/add-brand', [BrandsController::class, 'store'])
+    ->name('forms.addBrand')
+    ->middleware('auth');
+
+Route::delete('/brand/{brand}', [BrandsController::class, 'destroy'])
+    ->name('brand.destroy')
+    ->middleware('auth');
+
+Route::get('/brand/edit/{brand}', [BrandsController::class, 'edit'])
+    ->name('brand.edit')
+    ->middleware('auth');
+
+Route::post('/brand/update/{brand}', [BrandsController::class, 'update'])
+    ->name('brand.update')
+    ->middleware('auth');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

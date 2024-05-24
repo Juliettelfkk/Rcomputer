@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use PhpParser\Node\Expr\FuncCall;
 
 class AuthController extends Controller
 {
@@ -13,9 +15,34 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
+    public function logout()
+    {
+        auth()->logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+        return redirect()->route('login')->with('success', 'logged out successfully !');
+    }
+
     public function register()
     {
         return view('auth.register');
+    }
+
+    public function authenticate()
+    {
+        $validated = request()->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:8'
+        ]);
+
+        if (auth()->attempt($validated)) {
+            request()->session()->regenerate();
+            return redirect()->route('dashboard')->with('success', 'logged in successfully !');
+        }
+
+        return redirect()->route('login')->withErrors([
+            'email' => 'no matching user found with the provided email and password!'
+        ]);
     }
 
     public function store(Request $request)
@@ -25,7 +52,7 @@ class AuthController extends Controller
             'last_name' => 'required|max:14|min:4',
             'email' => 'required|email|unique:admins,email',
             'password' => 'required|confirmed|min:8',
-            'image' => '', // Adjust file types and size as needed
+            'image' => 'image',
         ]);
 
         if (request()->hasFile('image')) {
@@ -33,17 +60,23 @@ class AuthController extends Controller
             $validated['image'] = $imagePath;
         }
 
+        // because we have inheritance
+        User::create([
+            'name' => $validated['first_name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+        ]);
+
         Admin::create([
             'first_name' => $validated['first_name'],
             'last_name' => $validated['last_name'],
-            'image' => $validated['image'] ?? null, // Ensure to handle the case when no image is uploaded
+            'image' => $validated['image'], // Ensure to handle the case when no image is uploaded
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
         ]);
 
         return redirect()
-            ->route('dashboard')
-            ->with('success', 'Account created successfully!');
+            ->route('login')
+            ->with('success', 'Account Created Successfully!');
     }
-
 }

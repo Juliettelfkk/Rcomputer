@@ -22,19 +22,29 @@
         <div class="col-lg-10 continaer image">
             <div class="row mt-3">
                 <div class="col text-start">
-                    <h1 class="display-3 fw-bold text-dark">Categories</h1>
+                    <h1 class="display-5 fw-bold text-dark">Categories</h1>
                 </div>
                 <div class="col text-center m-auto mt-4">
-                    <form class="d-flex">
-                        <input class="form-control me-2 shadow" type="search" placeholder="Search" aria-label="Search">
+                    <form action="{{ route('categories') }}" class="d-flex">
+                        <input class="form-control me-2 shadow" name="search" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success fw-bold shadow" type="submit">Search</button>
                     </form>
                 </div>
                 <div class="col my-auto text-end">
-                    <button class="btn btn-success fw-bold me-5 p-2 px-3 shadow"><i class="bi bi-person-fill me-2"></i>Log in</button>
                     <a href="{{ route('category-form') }}">
-                        <button class="btn btn-info fw-bold me-5 p-2 px-3 shadow"><i class="bi bi-plus-square-fill me-2"></i>Add</button>
+                        <button class="btn btn-info fw-bold me-5 p-2 px-3 shadow"><i
+                                class="bi bi-plus-square-fill me-2"></i>Add</button>
                     </a>
+                </div>
+                <div class="d-block">
+                    @if (session()->has('success'))
+                        <div class="w-75 alert alert-dismissible m-auto text-center bg-success-subtle h4 rounded-pill shadow-lg text-success"
+                            role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                aria-label="Close"></button>
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="container mt-5">
@@ -54,42 +64,33 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Mahher borads</td>
-                                                    <td>used to build setup pc's</td>
-                                                    <td>
-                                                        <button class="btn btn-warning"><i
-                                                                class="bi bi-pencil-square"></i></button>
-                                                        <button class="btn btn-danger"><i
-                                                                class="bi bi-trash-fill"></i></button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Mouse</td>
-                                                    <td>most fast and speed moving mouses</td>
-                                                    <td>
-                                                        <button class="btn btn-warning"><i
-                                                                class="bi bi-pencil-square"></i></button>
-                                                        <button class="btn btn-danger"><i
-                                                                class="bi bi-trash-fill"></i></button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>keyBoards</td>
-                                                    <td>best perfermance ever to comenicate with pc</td>
-                                                    <td>
-                                                        <button class="btn btn-warning"><i
-                                                                class="bi bi-pencil-square"></i></button>
-                                                        <button class="btn btn-danger"><i
-                                                                class="bi bi-trash-fill"></i></button>
-                                                    </td>
-                                                </tr>
+                                                @foreach ($categories as $category)
+                                                    <tr>
+                                                        <td>{{ $category['id'] }}</td>
+                                                        <td>{{ $category['name'] }}</td>
+                                                        <td>{{ $category['description'] }}</td>
+                                                        <td class="px-4">
+                                                            <form action="{{ route('category.edit', $category) }}" method="get">
+                                                                @csrf
+                                                                <button class="{{ (Auth::id() === $category['admin_id']) ? "btn btn-warning mx-2" : "btn btn-warning mx-2 disabled" }} "><i
+                                                                        class="bi bi-pencil-square"></i></button>
+                                                            </form>
+                                                            <form action="{{ route('category.destroy', $category) }}" method="post">
+                                                                @csrf
+                                                                @method('delete')
+                                                                <button  class="{{ (Auth::id() === $category['admin_id']) ? "btn btn-danger mx-2" : "btn btn-danger mx-2 disabled" }} " type="submit">
+                                                                    <i class="bi bi-trash-fill"></i>
+                                                                </button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
+                                </div>
+                                <div class="my-2">
+                                    {{ $categories->links() }}
                                 </div>
                             </div>
                         </div>

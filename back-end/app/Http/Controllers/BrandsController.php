@@ -13,7 +13,15 @@ class BrandsController extends Controller
      */
     public function index()
     {
-        //
+        $brands = Brand::orderby('created_at', 'DESC');
+
+        if (request()->has('search')) {
+            $brands = $brands->where('name', 'like', '%' . request()->get('search') . '%');
+        }
+
+        return view('pages.brands', [
+            'brands' => $brands->paginate(4),
+        ]);
     }
 
     /**
@@ -21,7 +29,7 @@ class BrandsController extends Controller
      */
     public function create()
     {
-        //
+        return view('forms.brand-form');
     }
 
     /**
@@ -29,7 +37,22 @@ class BrandsController extends Controller
      */
     public function store(StoreBrandRequest $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+
+        $validated['admin_id'] = auth()->user()->id;
+
+        Brand::create([
+            'name' => $validated['name'],
+            'description' => $validated['description'],
+            'admin_id' => $validated['admin_id'],
+        ]);
+
+        return redirect()
+            ->route('brands')
+            ->with('success', 'Brand added successfully !');
     }
 
     /**
@@ -45,7 +68,9 @@ class BrandsController extends Controller
      */
     public function edit(Brand $brand)
     {
-        //
+        return view('edit.brand', [
+            'brand' => $brand,
+        ]);
     }
 
     /**
@@ -53,7 +78,13 @@ class BrandsController extends Controller
      */
     public function update(UpdateBrandRequest $request, Brand $brand)
     {
-        //
+        $brand->name = $request->get('name');
+        $brand->description = $request->get('description');
+        $brand->save();
+
+        return redirect()
+            ->route('brands')
+            ->with('success', 'Brand Updated Successfully !');
     }
 
     /**
@@ -61,6 +92,10 @@ class BrandsController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        //
+        $brand->delete();
+
+        return redirect()
+            ->route('brands')
+            ->with('success', 'Brand Deleted Successfully !');
     }
 }
