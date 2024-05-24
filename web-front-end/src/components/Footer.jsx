@@ -34,16 +34,17 @@ export default function Footer() {
               <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                 <h6 className="text-uppercase mb-4 font-weight-bold">Products</h6>
                 <p>
-                  <a className="text-white">MDBootstrap</a>
+                  <Link to="/" className="text-white">Product 1</Link>
+                  
                 </p>
                 <p>
-                  <a className="text-white">MDWordPress</a>
+                <Link to="/" className="text-white">Product 2</Link>
                 </p>
                 <p>
-                  <a className="text-white">BrandFlow</a>
+                <Link to="/" className="text-white">Product 3</Link>
                 </p>
                 <p>
-                  <a className="text-white">Bootstrap Angular</a>
+                <Link to="/" className="text-white">Product 4</Link>
                 </p>
               </div>
 
@@ -96,28 +97,28 @@ export default function Footer() {
                 </Link>
 
                 <Link to="/#"
-                  
-                    className="btn btn-outline-light btn-floating m-1 text-white"
-                    role="button"
-                  ><i className="fab fa-twitter"></i>
-                  
+
+                  className="btn btn-outline-light btn-floating m-1 text-white"
+                  role="button"
+                ><i className="fab fa-twitter"></i>
+
                 </Link>
 
 
                 <Link to="/#"
 
-                    className="btn btn-outline-light btn-floating m-1 text-white"
-                    role="button"
-                  ><i className="fab fa-google"></i>
-                  
+                  className="btn btn-outline-light btn-floating m-1 text-white"
+                  role="button"
+                ><i className="fab fa-google"></i>
+
                 </Link>
 
 
                 <Link to="/#"
-                    className="btn btn-outline-light btn-floating m-1 text-white"
-                    role="button"
-                  ><i className="fab fa-instagram"></i>
-           
+                  className="btn btn-outline-light btn-floating m-1 text-white"
+                  role="button"
+                ><i className="fab fa-instagram"></i>
+
                 </Link>
 
 
