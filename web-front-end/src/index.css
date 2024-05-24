@@ -85,7 +85,7 @@ border: 1px solid rgb(85, 85, 85);
 .heart-icon{
   position: absolute;
   top: 16px;
-  right: 15px;
+  left: 15px;
   font-size: 18px;
 }
 .product-type{
@@ -106,4 +106,21 @@ border: 1px solid rgb(85, 85, 85);
 }
 .product-item{
   width: 300px;
+}
+.notify-badge{
+  position: absolute;
+  right:1px;
+
+  top:30px;
+  background:red;
+  text-align: center;
+  border-radius: 10px 30px 30px 30px;
+  color:white;
+  padding:5px 20px;
+  font-size:20px;
+}
+.Badge-item{
+  position:relative;
+    padding-top:20px;
+    display:inline-block;
 }
