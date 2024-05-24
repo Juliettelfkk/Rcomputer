@@ -7,3 +7,103 @@
   
 
 }
+
+.navbar-brand{
+  letter-spacing: 2px;
+  font-family: var(--lg-font);
+}
+.nav-link:hover{
+color: var(--red)!important;
+}
+.fa:hover{
+  color: var(--red)!important;
+}
+.nav-item{
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.5);
+}
+@media(min-width:992px){
+  .nav-item{
+    border-bottom: none;
+  }
+}
+
+/* Header */
+#header{
+  background: url(../src/assets/bg.avif) top/cover no-repeat ;
+
+}
+
+.shop,.buybtn{
+background-color: #fff;
+color: rgb(85, 85, 85) ;
+padding: 10px 28px;
+border-radius: 25px;
+border: 1px solid rgb(85, 85, 85);
+}
+.shop:hover, .buybtn:hover{
+  background-color:var(--pink) ;
+  color: #fff;
+  border-color: var(--pink);
+}
+.carousel-inner h1{
+  font-size: 60px;
+  font-family: var(--lg-font);
+}
+.carousel-item .btn{
+  border-color: #fff!important;
+}
+.carousel-item .btn:hover{
+  border-color: var(--pink)!important;
+}
+.product-item{
+  border: 1px solid rgb(219, 219, 219);
+}
+.product-img{
+  position: relative;
+  overflow: hidden;
+}
+.btns{
+  position: absolute;
+  left: 0;
+  bottom: -100%;
+  font-size: 15px;
+  font-weight: 300;
+  transition: all 0.3s ease-in-out;
+}
+.btns button{
+  border: none;
+  background-color: rgb(39, 39, 39);
+  color:#fff;
+  transition: all 0.3s ease-in-out;
+}
+.btns button:hover{
+  color: #fcb941;
+}
+.product-img:hover .btns{
+  bottom: 0;
+}
+.heart-icon{
+  position: absolute;
+  top: 16px;
+  right: 15px;
+  font-size: 18px;
+}
+.product-type{
+  font-size: 13px;
+  opacity: 0.8;
+}
+.product-name{
+  transition: all 0.3s ease-in-out;
+}
+.product-name:hover{
+  color: #fcb941!important;
+}
+.product-price{
+  color: #fcb941;
+}
+.rating{
+  font-size: 13px;
+}
+.product-item{
+  width: 300px;
+}
