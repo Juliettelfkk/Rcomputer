@@ -32,6 +32,11 @@ color: var(--red)!important;
   background: url(../src/assets/bg.avif) top/cover no-repeat ;
 
 }
+#contact{
+  background: url(../src/assets/contactBg.png) top/cover no-repeat ;
+  
+ 
+}
 
 .shop,.buybtn{
 background-color: #fff;
@@ -123,7 +128,4 @@ border: 1px solid rgb(85, 85, 85);
   position:relative;
     padding-top:20px;
     display:inline-block;
-}
-.sort-Form{
-  
 }
