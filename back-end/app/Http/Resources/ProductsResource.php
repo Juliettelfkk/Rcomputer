@@ -20,11 +20,13 @@ class ProductsResource extends JsonResource
             'attributes' => [
                 'name' => $this->name,
                 'description' => $this->description,
-                'price' => $this->price,
-                'discount' => $this->discount,
-                'quantity' => $this->quantity,
-                'image' => $this->image,
+                'price' => (string) $this->price,
+                'discount' => (string) $this->discount,
+                'quantity' => (string) $this->quantity,
+                'image' => asset('storage/' . $this->image),
                 'sku' => $this->sku,
+                'category_id' => (String) $this->category_id,
+                'brand_id' => (String) $this->brand_id,
             ]
         ];
     }

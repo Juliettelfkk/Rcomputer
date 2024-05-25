@@ -18,4 +18,4 @@ Route::get('/brands', [BrandsController::class, 'allBrands']);
 Route::apiResource('/message', MessagesController::class);
     // just use post the endpoint for add a new message is : http://127.0.0.1:8000/api/message
 
-
+Route::get('/products/search', [ProductsController::class, 'searchProducts']);
