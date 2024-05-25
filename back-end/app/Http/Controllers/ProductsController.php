@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\UpdateProductRequest;
+use PDO;
 use App\Models\Brand;
+use App\Models\Product;
 use App\Models\Category;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Resources\ProductsResource;
+use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 
 class ProductsController extends Controller
 {
@@ -146,5 +149,22 @@ class ProductsController extends Controller
         return redirect()
             ->route('products')
             ->with('success', 'Product Deleted Successfully !');
+    }
+
+    public function allProducts(){
+        return ProductsResource::collection(
+            Product::all(),
+        );
+    }
+
+    public function searchProducts(Request $request){
+        // $products = Product::where('name', 'like', '%' . $request->input('search') . '%');
+        // return ProductsResource::collection(
+        //     $products ->where('name', 'like', '%' . $request->input('search') . '%')
+        // );
+
+        // return Product::where('name', 'like', '%' . $request->input('search') . '%');
+
+        return $request->input('search');
     }
 }

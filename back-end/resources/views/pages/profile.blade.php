@@ -65,8 +65,8 @@
                             </div>
                         </div>
                         <div class="col-4 m-auto text-center">
-                            <img src="{{ $image }}" alt="admin image" class="rounded-pill shadow my-5"
-                                width="150px" height="150px">
+                            <img src="{{ $image }}" alt="admin image" class="rounded-5 shadow my-5"
+                                width="150px" height="auto">
                         </div>
 
                     </div>
