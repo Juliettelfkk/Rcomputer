@@ -11,7 +11,8 @@
     </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/css/background.css">
-    <title>brands</title>
+    <title>{{ config('app.name') }}</title>
+    <link rel="icon" href="{{ asset('image/logo.png') }}">
 </head>
 
 <body>
@@ -72,7 +73,7 @@
                                                         <td>{{ $message['subject'] }}</td>
                                                         <td>{{ $message['message'] }}</td>
                                                         <td class="px-4">
-                                                            <form action="" method="get">
+                                                            <form action="{{ route('forms.reply', $message) }}" method="get">
                                                                 @csrf
                                                                 <button class="btn btn-warning mx-2"><i
                                                                         class="bi bi-reply-fill"></i></button>

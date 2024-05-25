@@ -12,22 +12,28 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/css/background.css">
     <link rel="stylesheet" href="/css/style.css">
-    <title>Profile Edit</title>
+    <link rel="icon" href="{{ asset('image/logo.png') }}">
+    <title>{{ config('app.name') }}</title>
 </head>
 
 <body>
     <div class="container">
-        <div class="d-block">
-            <div class="text-lg-start text-md-start text-sm-center">
+        <div class="row">
+            <div class="col text-lg-start text-md-start text-sm-center">
                 <a href="{{ route('dashboard') }}" class="text-decoration-none text-dark">
                     <img src="{{ asset('logo/logo.png') }}" alt="logo" width="120px" height="120px">
+                </a>
+            </div>
+            <div class=" col text-end m-auto">
+                <a href="{{ route('Profile') }}" class="text-decoration-none text-dark">
+                    <button class="btn btn-danger m-auto shadow"><i class="bi bi-x-square-fill me-2"></i>Cancel</button>
                 </a>
             </div>
         </div>
         <div class="d-block mb-5">
             <div class="text-center p-3 my-2">
                 <span class="text-dark display-5 fw-bold">
-                    Profile Edit
+                    Product Edit
                 </span>
             </div>
         </div>

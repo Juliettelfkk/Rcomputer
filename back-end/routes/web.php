@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\Mime\MessageConverter;
 
 Route::post('/profile/edit', [AdminsController::class, 'update'])
     ->name('profile.update')
@@ -123,6 +124,14 @@ Route::get('messages', [MessagesController::class, 'index'])
 
 Route::delete('/message/{message}', [MessagesController::class, 'destroy'])
     ->name('message.destroy')
+    ->middleware('auth');
+
+Route::get('message/{message}', [MessagesController::class, 'reply'])
+    ->name('forms.reply')
+    ->middleware('auth');
+
+Route::post('message/{massager}', [MessagesController::class, 'mailReply'])
+    ->name('reply')
     ->middleware('auth');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -11,7 +11,9 @@
     </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/css/background.css">
-    <title>dashboard</title>
+    <link rel="icon" href="{{ asset('image/logo.png') }}">
+    <title>{{ config('app.name') }}</title>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
 </head>
 
 <body>
@@ -128,6 +130,16 @@
                             </div>
                         </div>
                     </a>
+                </div>
+                <div class="row">
+                    <div class="col-6 card rounded-5 shadow my-5">
+                        {!! $chart->container() !!}
+                        {!! $chart->script() !!}
+                    </div>
+                    <divn class="col-5 card rounded-5 shadow m-5">
+                        {!! $chart_circle->container() !!}
+                        {!! $chart_circle->script() !!}
+                    </div>
                 </div>
             </div>
         </div>

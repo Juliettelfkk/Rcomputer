@@ -1,3 +1,4 @@
+</html>
 <html lang="en">
 
 <head>
@@ -11,7 +12,6 @@
     </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="icon" href="{{ asset('image/logo.png') }}">
     <title>{{ config('app.name') }}</title>
 </head>
 
@@ -24,7 +24,7 @@
                 </a>
             </div>
             <div class=" col text-end m-auto">
-                <a href="{{ route('categories') }}" class="text-decoration-none text-dark">
+                <a href="{{ route('messages') }}" class="text-decoration-none text-dark">
                     <button class="btn btn-danger m-auto shadow"><i class="bi bi-x-square-fill me-2"></i>Cancel</button>
                 </a>
             </div>
@@ -32,27 +32,17 @@
         <div class="d-block mb-5">
             <div class="text-center p-3 my-2">
                 <span class="text-dark display-5 fw-bold">
-                    Category Edit
+                    Reply to <span class="fst-italic text-decoration-underline">{{ $reply["name"] }}</span>
                 </span>
             </div>
         </div>
         <div class="d-flex justify-content-center align-items-center mt-5">
-            <form action="{{ route('category.update', $category) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('reply', $reply) }}" method="post" enctype="multipart/form-data">
                 @csrf
-                <div class="row">
-                    <div class="col">
-                        <input class="form-control form-control-lg my-2 shadow" type="text" name="name"
-                            placeholder="Name" value="{{ $category->name }}">
-                        @error('name')
-                            <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
-                        @enderror
-                    </div>
-                </div>
-
                 <div class="row ">
                     <div class="col">
-                        <textarea class="form-control form-control-lg my-2 shadow" name="description" cols="40" rows="3"
-                            placeholder="Description">{{ $category->description }}</textarea>
+                        <textarea class="form-control form-control-lg my-2 shadow" name="reply" cols="40" rows="3"
+                            placeholder="Reply"></textarea>
                         @error('description')
                             <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
                         @enderror
@@ -62,7 +52,7 @@
                 <div class="row ">
                     <div class="col text-end">
                         <button class="btn btn-success hover text-light fw- my-2  shadow" type="submit"><i
-                                class="bi bi-save-fill me-2"></i>Save</button>
+                                class="bi bi-save-fill me-2"></i>Send</button>
                     </div>
                 </div>
             </form>
