@@ -31,6 +31,7 @@ export default function Home() {
           <span className="carousel-control-next-icon"></span>
         </button>
       </header>
+      
       <section>
         <div className="container-fluid d-flex flex-row bg-white p-5 justify-content-between">
           <div className="text-center border-end border-dark-subtle   border-2 pe-5">
