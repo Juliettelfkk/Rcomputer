@@ -50,7 +50,6 @@ function HomeProducts() {
 
     
 
-          {/* c */}
         </div>
 
       </section>

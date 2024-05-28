@@ -5,9 +5,8 @@ import productImg1 from '../assets/product1.png'
 function HomeProductsProduct() {
   // new products 
   return (
-<div className="row g-4 mt-0 my-5 mx-2 ">
 
-<div className="col shadow product-item  mx-auto">
+<div className="col-md-4 mb-4 product-item  mx-auto">
   <span class="badge  rounded-pill  " style={{backgroundColor:'rgb(19, 7, 84)' , padding: '10px'}}>New</span>
   <div className="product-img ">
     <img src={productImg1} alt="" className="img-fluid d-block mx-auto  "/>
@@ -48,7 +47,6 @@ function HomeProductsProduct() {
       <span>(25reviews)</span>
     </div>
   </div>
-</div>
 </div>
 
 
