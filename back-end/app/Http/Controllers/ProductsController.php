@@ -153,18 +153,20 @@ class ProductsController extends Controller
 
     public function allProducts(){
         return ProductsResource::collection(
-            Product::all(),
+            Product::query()
+            ->orderBy('created_at', 'desc')
+            ->get()
         );
     }
 
     public function searchProducts(Request $request){
-        // $products = Product::where('name', 'like', '%' . $request->input('search') . '%');
-        // return ProductsResource::collection(
-        //     $products ->where('name', 'like', '%' . $request->input('search') . '%')
-        // );
+        $products = Product::query()
+            ->orderBy('created_at', 'desc')
+            ->where('name', 'like', '%' . $request->input('search') . '%')
+            ->get();
 
-        // return Product::where('name', 'like', '%' . $request->input('search') . '%');
-
-        return $request->input('search');
+        return ProductsResource::collection(
+            $products
+        );
     }
 }

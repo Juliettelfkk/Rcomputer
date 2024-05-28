@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
+use App\Http\Resources\ClientsResource;
 use Illuminate\Http\Request;
 
 class ClientsController extends Controller
@@ -30,7 +31,16 @@ class ClientsController extends Controller
      */
     public function store(StoreClientRequest $request)
     {
-        //
+        $client = Client::create([
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+            'address' => $request->input('address'),
+            'city' => $request->input('city'),
+        ]);
+
+        return new ClientsResource($client);
     }
 
     /**
@@ -63,9 +73,5 @@ class ClientsController extends Controller
     public function destroy(Client $client)
     {
         //
-    }
-
-    public function addMessage(Request $request){
-        dd($request);
     }
 }
