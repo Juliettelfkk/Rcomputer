@@ -61,24 +61,22 @@ export const PRODUCTS = [
     productName: "DON'T TRIP UNSTRUCTURED HAT",
     price: 40.0,
     productImage: product8,
+
   },
   {
     id: 10,
     productName: "DON'T TRIP UNSTRUCTURED HAT",
     price: 40.0,
-    productImage: product8,
+    productImage: product2,
+
   },
   {
     id: 11,
     productName: "DON'T TRIP UNSTRUCTURED HAT",
     price: 40.0,
-    productImage: product8,
+    productImage: product2,
+
   },
-  {
-    id: 12,
-    productName: "DON'T TRIP UNSTRUCTURED HAT",
-    price: 40.0,
-    productImage: product8,
-  },
-  
+
+
 ];

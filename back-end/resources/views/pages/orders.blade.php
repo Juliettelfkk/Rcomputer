@@ -11,7 +11,8 @@
     </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/css/background.css">
-    <title>orders</title>
+    <title>{{ config('app.name') }}</title>
+    <link rel="icon" href="{{ asset('image/logo.png') }}">
 </head>
 
 <body>
@@ -44,7 +45,6 @@
                                         <table class="table table-striped mb-0 text-center shadow">
                                             <thead style="background-color: #002d72;">
                                                 <tr>
-                                                    <th scope="col">Id</th>
                                                     <th scope="col">Date</th>
                                                     <th scope="col">Client Name</th>
                                                     <th scope="col">Price</th>
@@ -55,7 +55,6 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>1</td>
                                                     <td>12/05/2024</td>
                                                     <td>youcef kacem</td>
                                                     <td>1500 da</td>
@@ -69,7 +68,6 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>2</td>
                                                     <td>12/05/2024</td>
                                                     <td>chaima lafrak</td>
                                                     <td>1500 da</td>
@@ -83,16 +81,15 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>3</td>
                                                     <td>12/05/2024</td>
                                                     <td>nssime belbiri</td>
                                                     <td>1500 da</td>
                                                     <td>mouse</td>
                                                     <th>1</th>
                                                     <td>
-                                                        <button class="btn btn-warning"><i
+                                                        <button data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-warning"><i
                                                                 class="bi bi-pencil-square"></i></button>
-                                                        <button class="btn btn-danger"><i
+                                                        <button data-toggle="tooltip" data-placement="top" title="Delete" class="btn btn-danger"><i
                                                                 class="bi bi-trash-fill"></i></button>
                                                     </td>
                                                 </tr>

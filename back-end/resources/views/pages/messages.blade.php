@@ -11,7 +11,8 @@
     </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/css/background.css">
-    <title>brands</title>
+    <title>{{ config('app.name') }}</title>
+    <link rel="icon" href="{{ asset('image/logo.png') }}">
 </head>
 
 <body>
@@ -55,7 +56,7 @@
                                         <table class="table table-striped mb-0 text-center shadow">
                                             <thead style="background-color: #002d72;">
                                                 <tr>
-                                                    <th scope="col">Id</th>
+                                                    <th scope="col">Time</th>
                                                     <th scope="col">Name</th>
                                                     <th scope="col">Email</th>
                                                     <th scope="col">Subject</th>
@@ -66,21 +67,21 @@
                                             <tbody>
                                                 @foreach ($messages as $message)
                                                     <tr>
-                                                        <td>{{ $message['id'] }}</td>
+                                                        <td>{{ $message['created_at']->diffForHumans() }}</td>
                                                         <td>{{ $message['name'] }}</td>
                                                         <td>{{ $message['email'] }}</td>
                                                         <td>{{ $message['subject'] }}</td>
                                                         <td>{{ $message['message'] }}</td>
                                                         <td class="px-4">
-                                                            <form action="" method="get">
+                                                            <form action="{{ route('forms.reply', $message) }}" method="get">
                                                                 @csrf
-                                                                <button class="btn btn-warning mx-2"><i
+                                                                <button data-toggle="tooltip" data-placement="top" title="Reply" class="btn btn-warning mx-2"><i
                                                                         class="bi bi-reply-fill"></i></button>
                                                             </form>
                                                             <form action="{{ route('message.destroy', $message) }}" method="post">
                                                                 @csrf
                                                                 @method('delete')
-                                                                <button class="btn btn-danger mx-2">
+                                                                <button data-toggle="tooltip" data-placement="top" title="Delete" class="btn btn-danger mx-2">
                                                                     <i class="bi bi-trash-fill"></i>
                                                                 </button>
                                                             </form>

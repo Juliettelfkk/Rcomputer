@@ -11,7 +11,8 @@
     </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/css/background.css">
-    <title>brands</title>
+    <title>{{ config('app.name') }}</title>
+    <link rel="icon" href="{{ asset('image/logo.png') }}">
 </head>
 
 <body>
@@ -57,7 +58,6 @@
                                         <table class="table table-striped mb-0 text-center shadow">
                                             <thead style="background-color: #002d72;">
                                                 <tr>
-                                                    <th scope="col">Id</th>
                                                     <th scope="col">Name</th>
                                                     <th scope="col">Description</th>
                                                     <th scope="col">Options</th>
@@ -66,20 +66,19 @@
                                             <tbody>
                                                 @foreach ($brands as $brand)
                                                     <tr>
-                                                        <td>{{ $brand['id'] }}</td>
                                                         <td>{{ $brand['name'] }}</td>
                                                         <td>{{ $brand['description'] }}</td>
                                                         <td class="px-4">
                                                             <form action="{{ route('brand.edit', $brand) }}" method="get">
                                                                 @csrf
-                                                                <button class="{{ (Auth::id() === $brand['admin_id']) ? "btn btn-warning mx-2" : "btn btn-warning mx-2 disabled" }} "><i
+                                                                <button data-toggle="tooltip" data-placement="top" title="Edit" class="{{ (Auth::id() === $brand['admin_id']) ? "btn btn-warning mx-2" : "btn btn-warning mx-2 disabled" }} "><i
                                                                         class="bi bi-pencil-square"></i></button>
                                                             </form>
                                                             <form action="{{ route('brand.destroy', $brand) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('delete')
-                                                                <button class="{{ (Auth::id() === $brand['admin_id']) ? "btn btn-danger mx-2" : "btn btn-danger mx-2 disabled" }} ">
+                                                                <button data-toggle="tooltip" data-placement="top" title="Delete" class="{{ (Auth::id() === $brand['admin_id']) ? "btn btn-danger mx-2" : "btn btn-danger mx-2 disabled" }} ">
                                                                     <i class="bi bi-trash-fill"></i>
                                                                 </button>
                                                             </form>

@@ -11,7 +11,8 @@
     </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/css/background.css">
-    <title>products</title>
+    <title>{{ config('app.name') }}</title>
+    <link rel="icon" href="{{ asset('image/logo.png') }}">
 </head>
 
 <body>
@@ -57,7 +58,7 @@
                                         <table class="table table-striped mb-0 text-center shadow">
                                             <thead style="background-color: #002d72;">
                                                 <tr>
-                                                    <th scope="col">Id</th>
+                                                    <th scope="col">Time</th>
                                                     <th scope="col">Sku</th>
                                                     <th scope="col">Name</th>
                                                     <th scope="col">Brand</th>
@@ -73,7 +74,7 @@
                                             <tbody>
                                                 @foreach ($products as $product)
                                                     <tr>
-                                                        <td>{{ $product['id'] }}</td>
+                                                        <td>{{ $product['created_at']->diffForHumans() }}</td>
                                                         <td>{{ $product['sku'] }}</td>
                                                         <td>{{ $product['name'] }}</td>
                                                         <td>{{ $product->getBrand($product['brand_id']) }}</td>
@@ -86,14 +87,14 @@
                                                         <td>
                                                             <form action="{{ route('product-edit', $product) }}" method="get">
                                                                 @csrf
-                                                                <button class="{{ (Auth::id() === $product['admin_id']) ? "btn btn-warning mx-1" : "btn btn-warning mx-1 disabled" }}"><i
+                                                                <button type="button" data-toggle="tooltip" data-placement="top" title="Edit" class="{{ (Auth::id() === $product['admin_id']) ? "btn btn-warning mx-1" : "btn btn-warning mx-1 disabled" }}"><i
                                                                         class="bi bi-pencil-square"></i></button>
                                                             </form>
                                                             <form action="{{ route('product.destroy', $product) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('delete')
-                                                                <button class="{{ (Auth::id() === $product['admin_id']) ? "btn btn-danger mx-1" : "btn btn-danger mx-1 disabled" }}"><i
+                                                                <button type="button" data-toggle="tooltip" data-placement="top" title="Delete" class="{{ (Auth::id() === $product['admin_id']) ? "btn btn-danger mx-1" : "btn btn-danger mx-1 disabled" }}"><i
                                                                         class="bi bi-trash-fill"></i></button>
                                                             </form>
                                                         </td>

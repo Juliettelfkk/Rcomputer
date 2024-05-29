@@ -20,6 +20,22 @@ body {
     width: 100vw;
 }
 
+html{
+    animation: trans_form_to 0.75s;
+}
+
+@keyframes trans_form_to{
+    from{
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    to{
+        opacity: 1;
+        transform: translateX(100);
+    }
+}
+
 .sidebar-color {
     background-image: linear-gradient(
         to right,

@@ -1,36 +1,29 @@
-
-import NavBar from './components/NavBar'
-import ContactPage from './pages/ContactPage';
-import Home from './pages/Home'
-
-import AboutPage from './pages/AboutPage';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Footer from './components/Footer';
+import NavBar from "./components/NavBar" ;
+import Footer from "./components/Footer" ;
+import Home from "./pages/Home" ;
+import ContactPage from './pages/ContactPage';
+import AboutPage from './pages/AboutPage';
 import ShopPage from './pages/ShopPage/ShopPage';
 
-
 function App() {
-
-
   return (
-
     <div>
       <Router>
-        <NavBar />
+        <NavBar /> 
+        
 
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home/>} />
           <Route path="/shop" element={<ShopPage/>} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/about" element={<AboutPage/>} />
+          <Route path="/contact" element={<ContactPage/>} />
         </Routes>
-        <Footer/>
-
+        <Footer />
       </Router>
-
     </div>
-
-  )
+  );
 }
 
-export default App
+export default App;

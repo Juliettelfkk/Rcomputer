@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BrandsController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
@@ -19,3 +20,7 @@ Route::apiResource('/message', MessagesController::class);
     // just use post the endpoint for add a new message is : http://127.0.0.1:8000/api/message
 
 Route::get('/products/search', [ProductsController::class, 'searchProducts']);
+    // just use get the endpoint for search a product in our database : http://127.0.0.1:8000/api/products/search
+
+Route::apiResource('/clients', ClientsController::class);
+    // the endpoint for add a new client using post method is : http://127.0.0.1:8000/api/clients

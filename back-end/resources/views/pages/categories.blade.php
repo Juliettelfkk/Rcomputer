@@ -11,7 +11,8 @@
     </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/css/background.css">
-    <title>Categories</title>
+    <title>{{ config('app.name') }}</title>
+    <link rel="icon" href="{{ asset('image/logo.png') }}">
 </head>
 
 <body>
@@ -57,7 +58,6 @@
                                         <table class="table table-striped mb-0 text-center shadow">
                                             <thead style="background-color: #002d72;">
                                                 <tr>
-                                                    <th scope="col">Id</th>
                                                     <th scope="col">Name</th>
                                                     <th scope="col">Description</th>
                                                     <th scope="col">Options</th>
@@ -66,19 +66,18 @@
                                             <tbody>
                                                 @foreach ($categories as $category)
                                                     <tr>
-                                                        <td>{{ $category['id'] }}</td>
                                                         <td>{{ $category['name'] }}</td>
                                                         <td>{{ $category['description'] }}</td>
                                                         <td class="px-4">
                                                             <form action="{{ route('category.edit', $category) }}" method="get">
                                                                 @csrf
-                                                                <button class="{{ (Auth::id() === $category['admin_id']) ? "btn btn-warning mx-2" : "btn btn-warning mx-2 disabled" }} "><i
+                                                                <button data-toggle="tooltip" data-placement="top" title="Edit" class="{{ (Auth::id() === $category['admin_id']) ? "btn btn-warning mx-2" : "btn btn-warning mx-2 disabled" }} "><i
                                                                         class="bi bi-pencil-square"></i></button>
                                                             </form>
                                                             <form action="{{ route('category.destroy', $category) }}" method="post">
                                                                 @csrf
                                                                 @method('delete')
-                                                                <button  class="{{ (Auth::id() === $category['admin_id']) ? "btn btn-danger mx-2" : "btn btn-danger mx-2 disabled" }} " type="submit">
+                                                                <button data-toggle="tooltip" data-placement="top" title="Delete" class="{{ (Auth::id() === $category['admin_id']) ? "btn btn-danger mx-2" : "btn btn-danger mx-2 disabled" }} " type="submit">
                                                                     <i class="bi bi-trash-fill"></i>
                                                                 </button>
                                                             </form>

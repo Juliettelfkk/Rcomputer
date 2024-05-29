@@ -2,7 +2,7 @@ import React from 'react'
 import productImg1 from '../assets/product1.png'
 
 
-export default function () {
+export default function HomeProductsOnSaleProducts() {
   return (
     <div className="row g-4 mt-0 my-5 mx-2 ">
 
