@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use PDO;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
@@ -164,6 +163,24 @@ class ProductsController extends Controller
             ->orderBy('created_at', 'desc')
             ->where('name', 'like', '%' . $request->input('search') . '%')
             ->get();
+
+        return ProductsResource::collection(
+            $products
+        );
+    }
+
+    public function sevenProducts(){
+        $products = Product::latest()->limit(7)->get();
+        return ProductsResource::collection(
+            $products
+        );
+    }
+
+    public function sevenProductsDiscount(){
+        $products = Product::query()
+        ->orderBy('created_at', 'desc')
+        ->where('discount', '<>', 0)
+        ->get();
 
         return ProductsResource::collection(
             $products
