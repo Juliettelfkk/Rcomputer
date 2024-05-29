@@ -15,7 +15,10 @@ class ClientsController extends Controller
      */
     public function index()
     {
-        //
+        $clients = Client::orderby('created_at', 'DESC');
+        return view('pages.clients', [
+            'clients' => $clients->paginate(12),
+        ]);
     }
 
     /**
