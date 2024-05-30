@@ -24,12 +24,13 @@ export default function NavBar() {
           <button type="button" className="btn position-relative">
             <i className="fa fa-search text-light"></i>
           </button>
-          <button type="button" className="btn position-relative  ">
-            <i className="fa fa-shopping-cart text-light"></i>
-            <span className="position-absolute top-0 start-100 translate-middle badge bg-primary">
-              2
-            </span>
-          </button>
+          
+          <Link to="/cart" className="btn position-relative">
+        <i className="fa fa-shopping-cart text-light"></i>
+        <span className="position-absolute top-0 start-100 translate-middle badge bg-primary">
+          2
+        </span>
+   </Link>
           <button type="button" className="btn position-relative  ">
             <i className="fa fas fa-user-alt	 text-light "></i>
           </button>
