@@ -59,6 +59,7 @@
                                             <thead style="background-color: #002d72;">
                                                 <tr>
                                                     <th scope="col">Name</th>
+                                                    <th scope="col">Products</th>
                                                     <th scope="col">Description</th>
                                                     <th scope="col">Options</th>
                                                 </tr>
@@ -67,6 +68,7 @@
                                                 @foreach ($categories as $category)
                                                     <tr>
                                                         <td>{{ $category['name'] }}</td>
+                                                        <td>{{ $category->productsNumber($category['id'])->count() }}</td>
                                                         <td>{{ $category['description'] }}</td>
                                                         <td class="px-4">
                                                             <form action="{{ route('category.edit', $category) }}" method="get">

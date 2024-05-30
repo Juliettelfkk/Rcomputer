@@ -24,4 +24,10 @@ class Category extends Model
     {
         return $this->hasMany(Product::class);
     }
+
+    public function productsNumber($categoryId){
+        $productsNU = Product::all();
+        $productsNU = $productsNU->where('category_id', '=', $categoryId);
+        return ($productsNU);
+    }
 }
