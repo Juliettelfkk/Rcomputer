@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useContext } from "react";
 import "./shop.css";
+import { ShopContext } from '../../context/ShopContextProvider';
 export default function ProductsShop(props) {
   const { id, productName, price, productImage } = props.data || {}; // Ensure props.data is defined
+  const { addToCart, cartItems } = useContext(ShopContext);
+
+  const cartItemCount = cartItems[id];
   return (
       <div className="col-md-4 mb-4">
     <div className="card h-100 shadow-lg">
@@ -9,10 +13,11 @@ export default function ProductsShop(props) {
       <div className="card-body">
         <h5 className="card-title">{productName}</h5>
         <p className="card-text">{price}DA</p>
-        <button type="button" className="addToCartBttn">Add to cart</button>
+        <button className="addToCartBttn" onClick={() => addToCart(id)}>
+        Add To Cart {cartItemCount > 0 && <> ({cartItemCount})</>}
+      </button>
       </div>
     </div>
   </div>
   )
 }
-
