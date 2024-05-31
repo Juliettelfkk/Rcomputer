@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <div className="footer mt-5 mb-0">
       <footer
         className="text-white text-center text-lg-start "
         style={{ backgroundColor: "black" }}
@@ -147,6 +146,5 @@ export default function Footer() {
           </section>
         </div>
       </footer>
-    </div>
   );
 }

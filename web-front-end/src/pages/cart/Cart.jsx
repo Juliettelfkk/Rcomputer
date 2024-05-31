@@ -12,11 +12,11 @@ function Cart(){
   const navigate = useNavigate();
 
   return (
-    <div className="cart">
-      <div>
+    <div className="cart min-vh-100">
+      <div className="cartTitle">
         <h1 className="text-uppercase">Your Cart Items</h1>
       </div>
-      <div className="cart">
+      <div className="cart-i">
         {PRODUCTS.map((product) => {
           if (cartItems[product.id] !== 0) {
             return <CartItem data={product} />;
@@ -39,10 +39,10 @@ function Cart(){
           </button>
         </div>
       ) : (
-        <div className="text-center">
+        <div className=" text-center" >
         <h1 className=" empty-text">Your Shopping Cart is Empty</h1>
         <button onClick={() => navigate("/shop")} className="return-button">Return to Shop</button>
-      </div>
+      </div> 
       )}
     </div>
   );

@@ -24,6 +24,10 @@ export const ShopContextProvider = (props) => {
     return totalAmount;
   };
 
+  const getTotalItemsCount = () => {
+    return Object.values(cartItems).reduce((acc, itemCount) => acc + itemCount, 0);
+  };
+
 const addToCart = (itemId) => {
   setCartItems((prev)=>({...prev,[itemId]: prev[itemId]+1}))
 };
@@ -41,6 +45,7 @@ const contextValue = {
   addToCart,
   updateCartItemCount,
   removeFromCart,
+  getTotalItemsCount,
   getTotalCartAmount,
   checkout,
 };

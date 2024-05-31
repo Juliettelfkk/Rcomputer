@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import Logo from "../assets/logo.png";
 import "../styles/navbar.css";
 import { Link } from "react-router-dom";
+import { ShopContext } from "../context/ShopContextProvider";
+
+
 
 export default function NavBar() {
+  const { getTotalItemsCount } = useContext(ShopContext);
+const totalItems = getTotalItemsCount();
   return (
     //navBar
     <nav
@@ -27,9 +32,11 @@ export default function NavBar() {
           
           <Link to="/cart" className="btn position-relative">
         <i className="fa fa-shopping-cart text-light"></i>
-        <span className="position-absolute top-0 start-100 translate-middle badge bg-primary">
-          2
-        </span>
+        {totalItems > 0 && (
+                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                    {totalItems}
+                  </span>
+                )}
    </Link>
           <button type="button" className="btn position-relative  ">
             <i className="fa fas fa-user-alt	 text-light "></i>
