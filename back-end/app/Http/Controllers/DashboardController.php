@@ -31,7 +31,7 @@ class DashboardController extends Controller
 
         $chart = new Informations();
         $chart->labels(['products', 'categories', 'brands', 'orders', 'clients', 'admins', 'messages']);
-        $chart->dataset('web site information', 'bar', [//polarArea   pie   doughnut
+        $chart->dataset('web site information', 'bar', [ //polarArea   pie   doughnut
             $products_number,
             $categories_number,
             $brands_number,
@@ -51,7 +51,7 @@ class DashboardController extends Controller
 
         $chart_circle = new Informations();
         $chart_circle->labels(['products', 'categories', 'brands', 'orders', 'clients', 'admins', 'messages']);
-        $chart_circle->dataset('web site information', 'polarArea', [//polarArea   pie   doughnut
+        $chart_circle->dataset('web site information', 'polarArea', [ //polarArea   pie   doughnut
             $products_number,
             $categories_number,
             $brands_number,
@@ -68,6 +68,15 @@ class DashboardController extends Controller
             '#15f4ee',
             '#A3C1AD',
         ]);
+
+        if (request()->has('search')) {
+            $products = Product::orderby('created_at', 'DESC');
+            $products = $products->where('name', 'like', '%' . request()->get('search') . '%');
+            return view('pages.products', [
+                'products' => $products->paginate(4),
+            ]);
+        }
+
 
         return view('dashboard', [
             'products_number' => $products_number,

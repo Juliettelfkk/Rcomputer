@@ -84,18 +84,19 @@
                                                         <td>{{ $product['discount'] }}</td>
                                                         <td>{{ $product['quantity'] }}</td>
                                                         <td><img src="{{ 'storage/' . $product['image'] }}" alt="" width="100"></td>
-                                                        <td>
-                                                            <form action="{{ route('product-edit', $product) }}" method="get">
+                                                        <td class="px-4">
+                                                            <form action="{{ route('product.edit', $product) }}" method="get">
                                                                 @csrf
-                                                                <button type="button" data-toggle="tooltip" data-placement="top" title="Edit" class="{{ (Auth::id() === $product['admin_id']) ? "btn btn-warning mx-1" : "btn btn-warning mx-1 disabled" }}"><i
+                                                                <button data-toggle="tooltip" data-placement="top" title="Edit" class="{{ (Auth::id() === $product['admin_id']) ? "btn btn-warning mx-2" : "btn btn-warning mx-2 disabled" }} "><i
                                                                         class="bi bi-pencil-square"></i></button>
                                                             </form>
                                                             <form action="{{ route('product.destroy', $product) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('delete')
-                                                                <button type="button" data-toggle="tooltip" data-placement="top" title="Delete" class="{{ (Auth::id() === $product['admin_id']) ? "btn btn-danger mx-1" : "btn btn-danger mx-1 disabled" }}"><i
-                                                                        class="bi bi-trash-fill"></i></button>
+                                                                <button data-toggle="tooltip" data-placement="top" title="Delete" class="{{ (Auth::id() === $product['admin_id']) ? "btn btn-danger mx-2" : "btn btn-danger mx-2 disabled" }} ">
+                                                                    <i class="bi bi-trash-fill"></i>
+                                                                </button>
                                                             </form>
                                                         </td>
                                                     </tr>

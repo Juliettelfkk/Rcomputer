@@ -16,6 +16,11 @@ class ClientsController extends Controller
     public function index()
     {
         $clients = Client::orderby('created_at', 'DESC');
+
+        if (request()->has('search')) {
+            $clients = $clients->where('first_name', 'like', '%' . request()->get('search') . '%');
+        }
+
         return view('pages.clients', [
             'clients' => $clients->paginate(12),
         ]);
