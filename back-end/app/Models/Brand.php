@@ -24,4 +24,11 @@ class Brand extends Model
     {
         return $this->hasMany(Product::class);
     }
+
+    public function productsNumber($brandId){
+        $productsNUmber = Product::all();
+        $productsNUmber = $productsNUmber->where('brand_id', '=', $brandId);
+        return ($productsNUmber);
+    }
+
 }

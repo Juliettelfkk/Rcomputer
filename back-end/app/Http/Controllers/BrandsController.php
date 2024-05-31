@@ -6,6 +6,7 @@ use App\Models\Brand;
 use App\Http\Requests\StoreBrandRequest;
 use App\Http\Requests\UpdateBrandRequest;
 use App\Http\Resources\BrandsResource;
+use App\Models\Product;
 
 class BrandsController extends Controller
 {
@@ -105,4 +106,5 @@ class BrandsController extends Controller
             Brand::all()
         );
     }
+
 }

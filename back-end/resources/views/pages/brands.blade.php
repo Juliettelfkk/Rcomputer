@@ -59,6 +59,7 @@
                                             <thead style="background-color: #002d72;">
                                                 <tr>
                                                     <th scope="col">Name</th>
+                                                    <th scope="col">Products</th>
                                                     <th scope="col">Description</th>
                                                     <th scope="col">Options</th>
                                                 </tr>
@@ -67,6 +68,7 @@
                                                 @foreach ($brands as $brand)
                                                     <tr>
                                                         <td>{{ $brand['name'] }}</td>
+                                                        <td>{{ $brand->productsNumber($brand['id'])->count() }}</td>
                                                         <td>{{ $brand['description'] }}</td>
                                                         <td class="px-4">
                                                             <form action="{{ route('brand.edit', $brand) }}" method="get">

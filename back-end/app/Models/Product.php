@@ -46,4 +46,10 @@ class Product extends Model
         $category = Category::find($id);
         return $category['name'];
     }
+
+
+    public function productNumbers($id){
+        $productNumbers = Product::find($id);
+        dd($productNumbers);
+    }
 }
