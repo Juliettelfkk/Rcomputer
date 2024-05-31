@@ -28,7 +28,7 @@
                 </div>
                 <div class="col text-center m-auto mt-4">
                     <form class="d-flex">
-                        <input class="form-control me-2 shadow" type="search" placeholder="Search" aria-label="Search">
+                        <input class="form-control me-2 shadow" type="search" name="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success fw-bold shadow" type="submit">Search</button>
                     </form>
                 </div>

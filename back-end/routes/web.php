@@ -59,7 +59,7 @@ Route::post('/add-product', [ProductsController::class, 'store'])
     ->middleware('auth');
 
 Route::get('/product/edit/{product}', [ProductsController::class, 'edit'])
-    ->name('product-edit')
+    ->name('product.edit')
     ->middleware('auth');
 
 Route::post('/product/update/{product}', [ProductsController::class, 'update'])
