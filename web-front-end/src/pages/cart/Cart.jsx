@@ -10,6 +10,10 @@ function Cart(){
   const totalAmount = getTotalCartAmount();
 
   const navigate = useNavigate();
+  const handleCheckout = () => {
+    checkout(); // This calls the checkout function from ShopContext
+    navigate("/checkout"); // Redirect to the checkout page
+  };
 
   return (
     <div className="cart min-vh-100">
@@ -27,16 +31,9 @@ function Cart(){
       {totalAmount > 0 ? (
         <div className="checkout">
           <p> Subtotal: ${totalAmount} </p>
-          <button onClick={() => navigate("/")}> Continue Shopping </button>
-          <button
-            onClick={() => {
-              checkout();
-              navigate("/checkout");
-            }}
-          >
-            {" "}
-            Checkout{" "}
-          </button>
+          <button onClick={() => navigate("/shop")}> Continue Shopping </button>
+          <button onClick={handleCheckout}> Checkout </button>
+
         </div>
       ) : (
         <div className=" text-center" >

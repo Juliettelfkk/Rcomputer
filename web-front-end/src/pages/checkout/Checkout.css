@@ -1,0 +1,19 @@
+
+
+.order-summary {
+  border: 1px solid #141018;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.checkoutInfo{
+  padding-top: 50px;
+}
+
+.payment-method {
+  margin-top: 20px; /* Adjust spacing */
+}
+
+.confirm-button {
+  margin-top: 20px; /* Adjust spacing */
+}

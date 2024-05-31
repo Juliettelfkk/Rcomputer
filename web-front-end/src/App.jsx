@@ -8,6 +8,7 @@ import AboutPage from './pages/AboutPage';
 import ShopPage from './pages/ShopPage/ShopPage';
 import { ShopContext, ShopContextProvider } from './context/ShopContextProvider';
 import Cart from './pages/cart/Cart';
+import Checkout from './pages/checkout/Checkout';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
 
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path='/checkout' element={<Checkout/>} />
         </Routes>
         <Footer />
       </Router>
