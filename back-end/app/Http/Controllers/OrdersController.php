@@ -29,7 +29,7 @@ class OrdersController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-        //
+        dd($request['order']);
     }
 
     /**

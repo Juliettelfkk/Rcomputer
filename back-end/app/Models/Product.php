@@ -37,19 +37,30 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function getBrand($id){
+    public function getBrand($id)
+    {
         $brand = Brand::find($id);
         return $brand["name"];
     }
 
-    public function getCategory($id){
+    public function getCategory($id)
+    {
         $category = Category::find($id);
         return $category['name'];
     }
 
 
-    public function productNumbers($id){
+    public function productNumbers($id)
+    {
         $productNumbers = Product::find($id);
         dd($productNumbers);
+    }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class)
+            ->withPivot('product_quantity', 'total_price')
+            ->using(OrderProduct::class)
+            ->withTimestamps();
     }
 }
