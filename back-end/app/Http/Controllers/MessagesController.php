@@ -56,10 +56,10 @@ class MessagesController extends Controller
         $fullMessage = Message::find($message);
 
         Mail::to($fullMessage["email"])
-        ->send(new ReplyMail([
-            'content' => $request['reply'],
-            'sender' => $fullMessage
-        ]));
+            ->send(new ReplyMail([
+                'content' => $request['reply'],
+                'sender' => $fullMessage
+            ]));
 
         return redirect()
             ->route('messages')

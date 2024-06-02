@@ -10,7 +10,6 @@ class OrderProduct extends Pivot
         'order_id',
         'product_id',
         'product_quantity',
-        'total_price',
     ];
 
 }

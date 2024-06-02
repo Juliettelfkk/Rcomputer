@@ -33,3 +33,5 @@ Route::get('/products/discount', [ProductsController::class, 'sevenProductsDisco
     // these products will displayed in the home ,the seven products with discount ,the endpoint is : http://127.0.0.1:8000/api/products/discount
 
 Route::apiResource('/orders', OrdersController::class);
+    // the last endPoint which add the client the order and fill the pivot table , http://127.0.0.1:8000/api/orders
+        
