@@ -58,6 +58,7 @@
                                         <table class="table table-striped mb-0 text-center shadow">
                                             <thead style="background-color: #002d72;">
                                                 <tr>
+                                                    <th scope="col">#</th>
                                                     <th scope="col">Name</th>
                                                     <th scope="col">Products</th>
                                                     <th scope="col">Description</th>
@@ -67,6 +68,7 @@
                                             <tbody>
                                                 @foreach ($categories as $category)
                                                     <tr>
+                                                        <td>{{ $category['id'] }}</td>
                                                         <td>{{ $category['name'] }}</td>
                                                         <td>{{ $category->productsNumber($category['id'])->count() }}</td>
                                                         <td>{{ $category['description'] }}</td>

@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MessagesController;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\Mime\MessageConverter;
@@ -39,12 +40,6 @@ Route::post('/login', [AuthController::class, 'authenticate']);
 
 Route::post('/logout', [AuthController::class, 'logout'])
     ->name('logout');
-
-
-Route::get('/orders', function () {
-    return view('pages.orders');
-})->name('orders');
-
 
 Route::get('/product', [ProductsController::class, 'index'])
     ->name('products')
@@ -140,3 +135,15 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/clients', [ClientsController::class, 'index'])
     ->middleware('auth')
     ->name('clients');
+
+Route::get('/orders', [OrdersController::class, 'index'])
+    ->middleware('auth')
+    ->name('orders');
+
+Route::get('/order/information/{order}', [OrdersController::class, 'show'])
+    ->middleware('auth')
+    ->name('order.information');
+
+Route::delete('/order/{order}', [OrdersController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('order.destroy');

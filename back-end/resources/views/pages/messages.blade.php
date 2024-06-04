@@ -56,6 +56,7 @@
                                         <table class="table table-striped mb-0 text-center shadow">
                                             <thead style="background-color: #002d72;">
                                                 <tr>
+                                                    <th scope="col">#</th>
                                                     <th scope="col">Time</th>
                                                     <th scope="col">Name</th>
                                                     <th scope="col">Email</th>
@@ -67,6 +68,7 @@
                                             <tbody>
                                                 @foreach ($messages as $message)
                                                     <tr>
+                                                        <td>{{ $message['id'] }}</td>
                                                         <td>{{ $message['created_at']->diffForHumans() }}</td>
                                                         <td>{{ $message['name'] }}</td>
                                                         <td>{{ $message['email'] }}</td>

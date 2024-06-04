@@ -23,7 +23,7 @@
         <div class="col-lg-10 continaer image">
             <div class="row  mt-3">
                 <div class="col text-start">
-                    <h1 class="display-5 fw-bold text-dark">Profile Page</h1>
+                    <h1 class="display-5 fw-bold text-dark">Admin Profile</h1>
                 </div>
                 <div class="col text-center m-auto mt-4">
                     <a href="{{ route('profile.edit', $admin) }}" class="d-flex justify-content-end me-5 p-auto links">

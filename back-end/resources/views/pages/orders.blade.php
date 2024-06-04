@@ -26,13 +26,20 @@
                     <h1 class="display-5 fw-bold text-dark">Orders</h1>
                 </div>
                 <div class="col text-center m-auto mt-4">
-                    <form class="d-flex">
-                        <input class="form-control me-2 shadow" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success fw-bold shadow" type="submit">Search</button>
-                    </form>
+
                 </div>
                 <div class="col my-auto text-end">
 
+                </div>
+                <div class="d-block mt-2">
+                    @if (session()->has('success'))
+                        <div class="w-75 alert alert-dismissible m-auto text-center bg-success-subtle h4 rounded-pill shadow-lg text-success"
+                            role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                aria-label="Close"></button>
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="container mt-5">
@@ -45,57 +52,44 @@
                                         <table class="table table-striped mb-0 text-center shadow">
                                             <thead style="background-color: #002d72;">
                                                 <tr>
+                                                    <td scope='col'>#</td>
+                                                    <th scope="col">Time</th>
                                                     <th scope="col">Date</th>
                                                     <th scope="col">Client Name</th>
-                                                    <th scope="col">Price</th>
-                                                    <th scope="col">Products</th>
-                                                    <th scope="col">Quantity</th>
+                                                    <th scope="col">Total Price</th>
                                                     <th scope="col">Options</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>12/05/2024</td>
-                                                    <td>youcef kacem</td>
-                                                    <td>1500 da</td>
-                                                    <td>mouse</td>
-                                                    <th>1</th>
-                                                    <td>
-                                                        <button class="btn btn-warning"><i
-                                                                class="bi bi-pencil-square"></i></button>
-                                                        <button class="btn btn-danger"><i
-                                                                class="bi bi-trash-fill"></i></button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>12/05/2024</td>
-                                                    <td>chaima lafrak</td>
-                                                    <td>1500 da</td>
-                                                    <td>mouse</td>
-                                                    <th>1</th>
-                                                    <td>
-                                                        <button class="btn btn-warning"><i
-                                                                class="bi bi-pencil-square"></i></button>
-                                                        <button class="btn btn-danger"><i
-                                                                class="bi bi-trash-fill"></i></button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>12/05/2024</td>
-                                                    <td>nssime belbiri</td>
-                                                    <td>1500 da</td>
-                                                    <td>mouse</td>
-                                                    <th>1</th>
-                                                    <td>
-                                                        <button data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-warning"><i
-                                                                class="bi bi-pencil-square"></i></button>
-                                                        <button data-toggle="tooltip" data-placement="top" title="Delete" class="btn btn-danger"><i
-                                                                class="bi bi-trash-fill"></i></button>
-                                                    </td>
-                                                </tr>
+                                                @foreach ($orders as $order)
+                                                    <tr>
+                                                        <td>{{ $order['id'] }}</td>
+                                                        <td>{{ $order['created_at']->diffForHumans() }}</td>
+                                                        <td>{{ $order['updated_at']->toDateString() }}</td>
+                                                        <td>{{ $order->order($order['client_id'])->first_name }}
+                                                            {{ $order->order($order['client_id'])->last_name }}</td>
+                                                        <td>{{ $order['total_price'] }} <span class="fw-bold">DA</span></td>
+                                                        <td>
+                                                            <a href="{{ route('order.information', $order['id']) }}"><button
+                                                                    class="btn btn-warning my-1"><i
+                                                                        class="bi bi-eye-fill"></i></button></a>
+
+                                                            <form action="{{ route('order.destroy', $order['id']) }}" method="post">
+                                                                @csrf
+                                                                @method('delete')
+                                                                <button class="btn btn-danger my-1"><i
+                                                                        class="bi bi-trash-fill"></i></button>
+                                                            </form>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
+                                </div>
+                                <div class="my-2">
+                                    {{ $orders->links() }}
                                 </div>
                             </div>
                         </div>

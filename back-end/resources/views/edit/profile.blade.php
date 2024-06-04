@@ -37,12 +37,12 @@
                 </span>
             </div>
         </div>
-        <div class="d-flex justify-content-center align-items-center mt-5">
+        <div class="row justify-content-center align-items-center mt-5">
             <form action="{{ route('profile.update') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col">
-                        <input class="form-control form-control-lg my-2 shadow rounded-pill input_width" type="text"
+                        <input class="form-control form-control-lg my-2 shadow" type="text"
                             name="first_name" value={{ $admin['first_name'] }} required>
                         @error('first_name')
                             <span class="d-block fs-6 text-danger mt-2 text-center">{{ $message }}</span>
@@ -51,7 +51,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <input class="form-control form-control-lg my-2 shadow rounded-pill input_width" type="text"
+                        <input class="form-control form-control-lg my-2 shadow" type="text"
                             name="last_name" value={{ $admin['last_name'] }} required>
                         @error('last_name')
                             <span class="d-block fs-6 text-danger mt-2 text-center">{{ $message }}</span>
@@ -60,7 +60,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <input class="form-control form-control-lg my-2 shadow rounded-pill" type="email"
+                        <input class="form-control form-control-lg my-2 shadow" type="email"
                             name="email" value={{ $admin['email'] }} required>
                         @error('email')
                             <span class="d-block fs-6 text-danger mt-2 text-center">{{ $message }}</span>
@@ -69,7 +69,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <input class="form-control form-control-lg my-2 shadow rounded-pill" type="file"
+                        <input class="form-control form-control-lg my-2 shadow" type="file"
                             name="image">
                         @error('image')
                             <span class="d-block fs-6 text-danger mt-2 text-center">{{ $message }}</span>
@@ -78,7 +78,7 @@
                 </div>
                 <div class="row ">
                     <div class="col text-end">
-                        <button class="btn btn-success hover text-light fw- my-2 rounded-pill shadow" type="submit"><i
+                        <button class="btn btn-success hover text-light fw- my-2 shadow" type="submit"><i
                                 class="bi bi-box-arrow-in-right me-2"></i>Save</button>
                     </div>
                 </div>

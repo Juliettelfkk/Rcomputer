@@ -36,7 +36,7 @@
                 </span>
             </div>
         </div>
-        <div class="d-flex justify-content-center align-items-center mt-5">
+        <div class="row justify-content-center align-items-center mt-5">
             <form action="{{ route('brand.update', $brand) }}" method="post"  enctype="multipart/form-data">
                 @csrf
                 <div class="row">

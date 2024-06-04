@@ -10,8 +10,20 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
-        'number_of_products',
-        'order_quantity',
+        'client_id',
         'total_price',
     ];
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class)
+            ->withPivot('product_quantity')
+            ->using(OrderProduct::class)
+            ->withTimestamps();
+    }
+
+    public function order($id){
+        $client = Client::find($id);
+        return($client);
+    }
 }

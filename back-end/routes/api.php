@@ -4,6 +4,7 @@ use App\Http\Controllers\BrandsController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\MessagesController;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,3 +31,7 @@ Route::get('/products/seven', [ProductsController::class, 'sevenProducts']);
 
 Route::get('/products/discount', [ProductsController::class, 'sevenProductsDiscount']);
     // these products will displayed in the home ,the seven products with discount ,the endpoint is : http://127.0.0.1:8000/api/products/discount
+
+Route::apiResource('/orders', OrdersController::class);
+    // the last endPoint which add the client the order and fill the pivot table , http://127.0.0.1:8000/api/orders
+        

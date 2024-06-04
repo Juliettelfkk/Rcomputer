@@ -58,6 +58,7 @@
                                         <table class="table table-striped mb-0 text-center shadow">
                                             <thead style="background-color: #002d72;">
                                                 <tr>
+                                                    <th scope="col">#</th>
                                                     <th scope="col">Name</th>
                                                     <th scope="col">Products</th>
                                                     <th scope="col">Description</th>
@@ -67,6 +68,7 @@
                                             <tbody>
                                                 @foreach ($brands as $brand)
                                                     <tr>
+                                                        <td>{{ $brand['id'] }}</td>
                                                         <td>{{ $brand['name'] }}</td>
                                                         <td>{{ $brand->productsNumber($brand['id'])->count() }}</td>
                                                         <td>{{ $brand['description'] }}</td>

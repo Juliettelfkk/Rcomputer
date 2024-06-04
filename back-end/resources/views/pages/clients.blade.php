@@ -45,6 +45,7 @@
                                         <table class="table table-striped mb-0 text-center shadow">
                                             <thead style="background-color: #002d72;">
                                                 <tr>
+                                                    <th scope="col">#</th>
                                                     <th scope="col">Time</th>
                                                     <th scope="col">Frist Name</th>
                                                     <th scope="col">Last Name</th>
@@ -57,6 +58,7 @@
                                             <tbody>
                                                 @foreach ($clients as $client)
                                                     <tr>
+                                                        <td>{{ $client['id'] }}</td>
                                                         <td>{{ $client['created_at']->diffForHumans() }}</td>
                                                         <td>{{ $client['first_name'] }}</td>
                                                         <td>{{ $client['last_name'] }}</td>
@@ -69,6 +71,9 @@
                                             </tbody>
                                         </table>
                                     </div>
+                                </div>
+                                <div class="my-2">
+                                    {{ $clients->links() }}
                                 </div>
                             </div>
                         </div>

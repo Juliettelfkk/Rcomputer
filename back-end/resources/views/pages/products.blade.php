@@ -58,6 +58,7 @@
                                         <table class="table table-striped mb-0 text-center shadow">
                                             <thead style="background-color: #002d72;">
                                                 <tr>
+                                                    <th scope="col">#</th>
                                                     <th scope="col">Time</th>
                                                     <th scope="col">Sku</th>
                                                     <th scope="col">Name</th>
@@ -74,13 +75,14 @@
                                             <tbody>
                                                 @foreach ($products as $product)
                                                     <tr>
+                                                        <td>{{ $product['id'] }}</td>
                                                         <td>{{ $product['created_at']->diffForHumans() }}</td>
                                                         <td>{{ $product['sku'] }}</td>
                                                         <td>{{ $product['name'] }}</td>
                                                         <td>{{ $product->getBrand($product['brand_id']) }}</td>
                                                         <td>{{ $product->getCategory($product['category_id']) }}</td>
                                                         <td>{{ $product['description'] }}</td>
-                                                        <td>{{ $product['price'] }}</td>
+                                                        <td>{{ $product['price'] }} <span class="fw-bold">DA</span></td>
                                                         <td>{{ $product['discount'] }}</td>
                                                         <td>{{ $product['quantity'] }}</td>
                                                         <td><img src="{{ 'storage/' . $product['image'] }}" alt="" width="100"></td>
