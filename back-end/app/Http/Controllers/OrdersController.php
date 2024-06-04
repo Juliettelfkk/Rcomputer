@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateOrderRequest;
 use App\Http\Resources\OrdersResource;
 use App\Models\Client;
 use App\Models\OrderProduct;
+use App\Models\Product;
 
 class OrdersController extends Controller
 {
@@ -16,7 +17,11 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::orderby('created_at', 'DESC');
+
+        return view('pages.orders', [
+            'orders' => $orders->paginate(10),
+        ]);
     }
 
     /**
@@ -64,7 +69,17 @@ class OrdersController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        $client_id = $order['client_id'];
+        $order_id = $order['id'];
+
+        $client = Client::find($client_id);
+        $orderProduct = OrderProduct::all();
+        $orderProduct = $orderProduct->where('order_id', '=', $order_id);
+
+        return view('pages.order-information', [
+            'client' => $client,
+            'orderProduct' => $orderProduct,
+        ]);
     }
 
     /**
@@ -88,6 +103,10 @@ class OrdersController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        $order->delete();
+
+        return redirect()
+            ->route('orders')
+            ->with('success', 'Order Deleted Successfully !');
     }
 }

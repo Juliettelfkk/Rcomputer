@@ -12,4 +12,14 @@ class OrderProduct extends Pivot
         'product_quantity',
     ];
 
+    public function getProduct($id){
+        $product = Product::find($id);
+        return($product);
+    }
+
+    public function getProductImage($id){
+        $product = Product::find($id);
+        return('storage/' . $product['image']);
+    }
+
 }

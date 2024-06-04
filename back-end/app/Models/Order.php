@@ -17,8 +17,13 @@ class Order extends Model
     public function products()
     {
         return $this->belongsToMany(Product::class)
-            ->withPivot('product_quantity', 'total_price')
+            ->withPivot('product_quantity')
             ->using(OrderProduct::class)
             ->withTimestamps();
+    }
+
+    public function order($id){
+        $client = Client::find($id);
+        return($client);
     }
 }
