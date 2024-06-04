@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import "./cart.css";
 import { ShopContext } from "../../context/ShopContextProvider";
 import { PRODUCTS } from "../../products";
@@ -23,7 +23,7 @@ function Cart(){
       <div className="cart-i">
         {PRODUCTS.map((product) => {
           if (cartItems[product.id] !== 0) {
-            return <CartItem data={product} />;
+            return <CartItem key={product.id}  data={product} />;
           }
         })}
       </div>

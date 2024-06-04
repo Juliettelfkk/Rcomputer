@@ -31,7 +31,6 @@ function ShopPage() {
               <option value='date'>Tri du plus récent au plus ancien</option>
               <option value='price'>Tri par tarif croissant</option>
               <option value='price-desc'>Tri par tarif décroissant</option>
-              <input type='hidden' name='paged' value={1} />
             </select>
           </form>
         </div>

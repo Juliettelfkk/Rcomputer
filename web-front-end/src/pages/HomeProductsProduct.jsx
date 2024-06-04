@@ -7,7 +7,7 @@ function HomeProductsProduct() {
   return (
 
 <div className="col-md-4 mb-4 product-item  mx-auto">
-  <span class="badge  rounded-pill  " style={{backgroundColor:'rgb(19, 7, 84)' , padding: '10px'}}>New</span>
+  <span className="badge  rounded-pill  " style={{backgroundColor:'rgb(19, 7, 84)' , padding: '10px'}}>New</span>
   <div className="product-img ">
     <img src={productImg1} alt="" className="img-fluid d-block mx-auto  "/>
     <span className="heart-icon">

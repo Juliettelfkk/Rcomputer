@@ -21,6 +21,7 @@ return(
       <input type="text" className="form-control" placeholder="email" />
     </div>
   </div>
+  
   <div className="row">
     <div className="col-md-12">
       <label className="phoneNumber mb-2">Phone Number *</label>
@@ -83,6 +84,12 @@ return(
         <option value="Relizane">Relizane</option>
       </select>
 
+    </div>
+  </div>
+  <div className="row">
+    <div className="col-md-12">
+      <label className="adress mb-2">Adresse *</label>
+      <input type="text" className="form-control" placeholder="Your adresse" />
     </div>
   </div>
   {/* Add other form fields for last name, address, state, phone number, email */}
