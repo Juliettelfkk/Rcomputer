@@ -7,7 +7,7 @@ function HomeProductsProduct({ product }) {
 
 
 
-  const originalPrice = parseFloat(product.price); // Convert price to number
+  const originalPrice = parseFloat(product.price); // Convert price to number cuz price is string bcz of json
 
   let discountedPrice = null;
   if (product.discount > 0) {

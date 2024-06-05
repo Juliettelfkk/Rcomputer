@@ -54,7 +54,6 @@ export default function Home() {
     <CategoryHome/>
     <HomeProducts/>  
   <HomeProductsOnSale/>
-    {/* new produtcs */}
     </div>
   )
 }

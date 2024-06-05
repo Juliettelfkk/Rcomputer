@@ -8,13 +8,23 @@ function HomeProductsOnSale() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/products/discount') 
-      .then(response => response.json())
-      .then(data => {
-        setProducts(data.data); 
-      })
-      .catch(error => console.error('Error fetching products:', error));
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:8000/api/products/discount');
+        const data = await response.json();
+        const products = data.data.map(item => ({
+          id: item.id,
+          ...item.attributes
+        }));
+        setProducts(products);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    fetchProducts();
   }, []);
+
 
   return (
     <div className='HomeOnSalesProducts'>
@@ -25,8 +35,8 @@ function HomeProductsOnSale() {
           </div>
           <div className="row g-4 mt-0 mx-auto">
             <Carousel responsive={responsive}>
-              {products.map(product => (
-                <HomeProductsOnSaleProducts key={product.id} product={product.attributes} />
+              {products.map((product) => (
+                <HomeProductsOnSaleProducts key={product.id} product={product} />
               ))}
             </Carousel>
           </div>
