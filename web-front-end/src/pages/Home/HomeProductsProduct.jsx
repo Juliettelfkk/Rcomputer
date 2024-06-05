@@ -2,7 +2,10 @@ import React, { useContext } from 'react';
 import { ShopContext } from '../../context/ShopContextProvider';
 
 function HomeProductsProduct({ product }) {
-  const { addToCart } = useContext(ShopContext);
+  const { addToCart, cartItems } = useContext(ShopContext);
+  const cartItemCount = cartItems[product.id] || 0;
+
+
 
   const originalPrice = parseFloat(product.price); // Convert price to number
 
@@ -14,8 +17,9 @@ function HomeProductsProduct({ product }) {
   }
 
   const handleAddToCart = () => {
-    addToCart(product.id); // Call addToCart() in the ShopContectProvider with product ID
+    addToCart(product.id);
   };
+
 
   return (
     <div className="col-md-4 mb-4 product-item mx-auto">
@@ -26,7 +30,7 @@ function HomeProductsProduct({ product }) {
         <div className="row btns w-100 mx-auto text-center">
           <button type="button" className="col-6 py-2" onClick={handleAddToCart}>
             <i className="fa fa-cart-plus"></i>
-            Add to cart
+            Add to cart  {cartItemCount > 0 && <> ({cartItemCount})</>}
           </button>
           <button type="button" className="col-6 py-2">
             <i className="fa fa-binoculars"></i>

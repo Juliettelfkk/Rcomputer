@@ -29,8 +29,11 @@ function HomeProducts() {
     const fetchProducts = async () => {
       try {
         const response = await fetch('http://127.0.0.1:8000/api/products/seven');
-        const result = await response.json();
-        const products = result.data.map(item => item.attributes);
+        const data = await response.json();
+        const products = data.data.map(item => ({
+          id: item.id,
+          ...item.attributes
+        }));
         setProducts(products);
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -49,7 +52,7 @@ function HomeProducts() {
           </div>
           <div className="row g-4 mt-0 mx-auto">
             <Carousel responsive={responsive}>
-              {products.map((product) => (
+              {products.map((product ) => (
                 <HomeProductsProduct key={product.id} product={product} />
               ))}
             </Carousel>
