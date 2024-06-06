@@ -158,6 +158,10 @@ class ProductsController extends Controller
         );
     }
 
+    public function allProductsFlutter(){
+        return Product::all();
+    }
+
     public function searchProducts(Request $request){
         $products = Product::query()
             ->orderBy('created_at', 'desc')

@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/products', [ProductsController::class, 'allProducts']);
     // the endpoint is : http://127.0.0.1:8000/api/products
 
+Route::get('/productsFlutter', [ProductsController::class, 'allProductsFlutter']);
+
 Route::get('/categories', [CategoriesController::class, 'allCategories']);
     // the endpoint is : http://127.0.0.1:8000/api/categories
 
@@ -34,4 +36,3 @@ Route::get('/products/discount', [ProductsController::class, 'sevenProductsDisco
 
 Route::apiResource('/orders', OrdersController::class);
     // the last endPoint which add the client the order and fill the pivot table , http://127.0.0.1:8000/api/orders
-        
