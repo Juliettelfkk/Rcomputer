@@ -1,19 +1,39 @@
-import React, { useContext } from "react";
-
-import {  useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./cart.css";
 import { ShopContext } from "../../context/ShopContextProvider";
-import { PRODUCTS } from "../../products";
 import { CartItem } from "./CartItem";
-function Cart(){
-  const { cartItems, getTotalCartAmount, checkout } = useContext(ShopContext);
-  const totalAmount = getTotalCartAmount();
 
+function Cart() {
+  const { cartItems,checkout, products } = useContext(ShopContext);
+  const [totalAmount, setTotalAmount] = useState(0);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const calculateTotalAmount = () => {
+      let total = 0;
+      for (const itemId in cartItems) {
+        const item = products.find(product => product.id === itemId);
+        if (item) {
+          const price = parseFloat(item.attributes.price);
+          const discountedPrice = item.attributes.discount
+            ? parseFloat(item.attributes.price) - (parseFloat(item.attributes.price) * parseFloat(item.attributes.discount) / 100)
+            : price;
+          total += discountedPrice * cartItems[itemId];
+        }
+      }
+      setTotalAmount(total.toFixed(2));
+    };
+  
+    calculateTotalAmount(); 
+  }, [cartItems, products]);
+  
+
   const handleCheckout = () => {
-    checkout(); // This calls the checkout function from ShopContext
-    navigate("/checkout"); // Redirect to the checkout page
-  };
+    navigate("/checkout", { state: { totalAmount } }); // passing subtotal via navigate
+  }
+
+  const cartProductIds = Object.keys(cartItems).filter(id => cartItems[id] > 0);
 
   return (
     <div className="cart min-vh-100">
@@ -21,27 +41,30 @@ function Cart(){
         <h1 className="text-uppercase">Your Cart Items</h1>
       </div>
       <div className="cart-i">
-        {PRODUCTS.map((product) => {
-          if (cartItems[product.id] !== 0) {
-            return <CartItem key={product.id}  data={product} />;
-          }
-        })}
+        {products
+          .filter(product => cartProductIds.includes(product.id))
+          .map(product => (
+            <CartItem key={product.id} data={product} />
+          ))}
       </div>
 
       {totalAmount > 0 ? (
         <div className="checkout">
-          <p> Subtotal: ${totalAmount} </p>
-          <button onClick={() => navigate("/shop")}> Continue Shopping </button>
-          <button onClick={handleCheckout}> Checkout </button>
-
+          <p className="text-success" style={{fontWeight:'bold'}}>Subtotal: {totalAmount}DA</p>
+          <button onClick={() => navigate("/shop")}>Continue Shopping</button>
+          <button onClick={handleCheckout}>Checkout</button>
         </div>
       ) : (
-        <div className=" text-center" >
-        <h1 className=" empty-text">Your Shopping Cart is Empty</h1>
-        <button onClick={() => navigate("/shop")} className="return-button">Return to Shop</button>
-      </div> 
+        <div className="text-center">
+          <h1 className="empty-text">Your Shopping Cart is Empty</h1>
+          <button onClick={() => navigate("/shop")} className="return-button">
+            Return to Shop
+          </button>
+        </div>
       )}
+     
     </div>
   );
-};
-export default Cart ;
+}
+
+export default Cart;

@@ -7,8 +7,8 @@ export default function CategoryHome() {
   useEffect(() => {
     axios.get('http://127.0.0.1:8000/api/categories')
       .then(res => {
-        console.log('Response data:', res.data); // Log the response data
-        setCategories(res.data.data); // Accessing the data property from the resource collection
+        console.log('Response data:', res.data);
+        setCategories(res.data.data); 
       })
       .catch(error => {
         console.error("There was an error fetching the categories!", error);

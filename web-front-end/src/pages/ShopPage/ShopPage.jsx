@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
-import SideBar from './SideBar'
-import ProductsShop from './ProductsShop'
-import Pagination from './Pagination'
+import React, { useContext, useState, useEffect } from 'react';
+import SideBar from './SideBar';
+import ProductsShop from './ProductsShop';
+import Pagination from './Pagination';
 import { ShopContext } from '../../context/ShopContextProvider';
 
 function ShopPage() {
@@ -9,7 +9,10 @@ function ShopPage() {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOrder, setSortOrder] = useState('date'); // Default sort order
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedBrand, setSelectedBrand] = useState(null);
   const [sortedProducts, setSortedProducts] = useState([]);
+
   const productsPerPage = 9; // Number of products per page
 
   // Function to sort products based on selected sort order
@@ -25,37 +28,55 @@ function ShopPage() {
         return products;
     }
   };
-  // Update sorted products when products or sort order changes
-  useEffect(() => {
-    setSortedProducts(sortProducts(products, sortOrder));
-  }, [products, sortOrder]);
 
+  // Filter and sort products based on selected category and sort order
+  useEffect(() => {
+    let filteredProducts = products;
+    if (selectedCategory) {
+      filteredProducts = products.filter(product => product.attributes.category_id === selectedCategory);
+    }
+    if (selectedBrand) {
+      filteredProducts = filteredProducts.filter(product => product.attributes.brand_id === selectedBrand);
+    }
+    setSortedProducts(sortProducts(filteredProducts, sortOrder));
+  }, [products, sortOrder, selectedCategory, selectedBrand]);
+
+  // Get current products for pagination
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  // Handle sort order change
   const handleSortOrderChange = (e) => {
     setSortOrder(e.target.value);
   };
 
+  const handleCategoryChange = (categoryId) => {
+    setSelectedCategory(categoryId);
+    setCurrentPage(1); e
+  };
+
+  const handleBrandChange = (brandId) => {
+    setSelectedBrand(brandId);
+    setCurrentPage(1); 
+  };
+
   return (
-    <div className='ShopPage container-fluid' style={{ paddingTop: "110px" }}>
+    <div className='ShopPage container-fluid' style={{ paddingTop: '110px' }}>
       <div className="row mb-4">
-        <div className="col m-auto text-start">
-          <h3 className='text-secondary'>SHOP</h3>
+        <div className="col m-auto text-start ">
+          <h3 className='text-secondary '>SHOP/PRODUCTS</h3>
         </div>
         <div className="col d-flex align-items-center justify-content-end">
-          <p className='mb-0 mr-2'>Affichage de {indexOfFirstProduct + 1}–{Math.min(indexOfLastProduct, products.length)} sur {products.length} résultats</p>
+          <p className='mb-0 mr-2'>Affichage de {indexOfFirstProduct + 1}–{Math.min(indexOfLastProduct, sortedProducts.length)} sur {sortedProducts.length} résultats</p>
           <form className='form-inline'>
             <select
               name="orderby"
               className='form-control w-auto'
+              style={{ marginLeft: '5px' }}
               value={sortOrder}
               onChange={handleSortOrderChange}
-              style={{ marginLeft: '5px' }}
             >
               <option value='date'>Tri du plus récent au plus ancien</option>
               <option value='price'>Tri par tarif croissant</option>
@@ -65,25 +86,25 @@ function ShopPage() {
         </div>
       </div>
 
-      <div className="row">
-        <SideBar />
-        <div className="col-md-9 p-3 mt-0">
-          <h4>Products</h4>
+      <div className="row ">
+        <SideBar onCategoryChange={handleCategoryChange} onBrandChange={handleBrandChange} />
+        <div className="col-md-9 p-3 mt-0 ">
+         
           <div className="row">
             {currentProducts.map((product) => (
               <ProductsShop key={product.id} data={product} />
             ))}
           </div>
-          <Pagination
-            productsPerPage={productsPerPage}
-            totalProducts={sortedProducts.length}
-            paginate={paginate}
+          <Pagination 
+            productsPerPage={productsPerPage} 
+            totalProducts={sortedProducts.length} 
+            paginate={paginate} 
             currentPage={currentPage}
           />
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default ShopPage
+export default ShopPage;

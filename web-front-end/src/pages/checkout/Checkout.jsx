@@ -1,32 +1,65 @@
-import React, {  useContext, useEffect } from "react";
-import { ShopContext } from "../../context/ShopContextProvider";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { CartItem } from "../cart/CartItem"; 
-import { PRODUCTS } from "../../products"; 
+import { ShopContext } from "../../context/ShopContextProvider";
+import "./Checkout.css";
+import MyForm from "./MyForm";
 
 function Checkout() {
-  const { cartItems } = useContext(ShopContext);
+  const { cartItems, products ,orderCount, checkout} = useContext(ShopContext);
   const navigate = useNavigate();
+  
 
-  useEffect(() => {
-    // Check if the cart is empty
-    const isEmptyCart = Object.values(cartItems).every((quantity) => quantity === 0);
+  const [billingInfo, setBillingInfo] = useState({
+    Name: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    buildingInfo: "",
+    wilaya: "Alger",
+    address: "",
+  });
 
-    // Redirect to cart page if the cart is empty
-    if (isEmptyCart) {
-      navigate("/cart");
+  const cartProductIds = Object.keys(cartItems).filter(id => cartItems[id] > 0);
+  const isEmptyCart = cartProductIds.length === 0;
+
+  const calculateTotalAmount = () => {
+    let total = 0;
+    for (const itemId in cartItems) {
+      const item = products.find(product => product.id === itemId);
+      if (item) {
+        const price = parseFloat(item.attributes.price);
+        const discountedPrice = item.attributes.discount
+          ? price - (price * parseFloat(item.attributes.discount) / 100)
+          : price;
+        total += discountedPrice * cartItems[itemId];
+      }
     }
-  }, [cartItems, navigate]);
+    return total.toFixed(2);
+  };
 
-  // Check if the cart is empty
-  const isEmptyCart = Object.values(cartItems).every((quantity) => quantity === 0);
+  const totalAmount = calculateTotalAmount();
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setBillingInfo({ ...billingInfo, [name]: value });
+  };
+
+  const handleConfirmOrder = () => {
+    const orderNumber = orderCount + 1; // Use the order count as order number
+    const orderDate = new Date().toLocaleDateString();
+
+    checkout(); // Call checkout to clear cart and increment order count
+    // Navigate to receipt page with billing info and total amount
+    navigate("/receipt", { state: { billingInfo, totalAmount, cartItems, products ,  orderNumber, orderDate} });
+  };
 
   return (
     <div className="checkout container-fluid min-vh-100" style={{ paddingTop: "110px" }}>
       <div className="row checkoutInfo">
         <div className="col-md-7 p-3">
           <div className="customer_details">
-            {/* Render your form component here */}
+            <h2>ORDER INFORMATION</h2>
+       <MyForm billingInfo={billingInfo} handleInputChange={handleInputChange}/>
           </div>
         </div>
         <div className="col-md-5 p-3 mt-0">
@@ -47,20 +80,36 @@ function Checkout() {
                   </tr>
                 </thead>
                 <tbody>
-                  {/* Render each cart item using the CartItem component */}
-                  {Object.keys(cartItems).map((itemId) => {
-                    const product = PRODUCTS.find((prod) => prod.id === parseInt(itemId));
-                    return (
-                      <CartItem
-                        key={product.id} // Ensure each CartItem has a unique key
-                        data={product}
-                        quantity={cartItems[itemId]}
-                      />
-                    );
-                  })}
+                  {products
+                    .filter(product => cartProductIds.includes(product.id))
+                    .map(product => {
+                      const price = parseFloat(product.attributes.price);
+                      const discountedPrice = product.attributes.discount
+                        ? price - (price * parseFloat(product.attributes.discount) / 100)
+                        : price;
+                      
+                      return (
+
+                      <tr key={product.id}>
+                        <td>{product.attributes.name}</td>
+                        <td>{cartItems[product.id]}</td>
+                        <td>{discountedPrice.toFixed(2)} DA</td>
+                      </tr>
+                      );})}
+                    
                 </tbody>
               </table>
-              {/* Other checkout information */}
+              <div className="order-total">
+                <p>Sous-total <span className="text-success" style={{fontWeight:"bold"}}>{totalAmount} DA</span></p>
+                <p>Expédition <span>Livraison gratuite</span></p>
+                <p>Total <span>{totalAmount} DA</span></p>
+              </div>
+              <div className="payment-method">
+                <p>Cash on delivery</p>
+                <p>Pay with cash upon delivery.</p>
+              </div>
+              <button className="place-order-button" onClick={handleConfirmOrder}>COMMANDER</button>
+              <p className="privacy-policy">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
             </div>
           )}
         </div>

@@ -29,7 +29,7 @@ Route::apiResource('/clients', ClientsController::class);
     // the endpoint for add a new client using post method is : http://127.0.0.1:8000/api/clients
 
 Route::get('/products/seven', [ProductsController::class, 'sevenProducts']);
-    // these products will displayed in the home the seven products , the endpoint is : http://127.0.0.1:8000/api/products/seven
+    // these are the latest products will displayed in the home the seven products , the endpoint is : http://127.0.0.1:8000/api/products/seven
 
 Route::get('/products/discount', [ProductsController::class, 'sevenProductsDiscount']);
     // these products will displayed in the home ,the seven products with discount ,the endpoint is : http://127.0.0.1:8000/api/products/discount

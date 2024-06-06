@@ -13,6 +13,9 @@ const getDefaultCart = (products) => {
 export const ShopContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [orderCount, setOrderCount] = useState(0); // to count orders
+
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -20,26 +23,14 @@ export const ShopContextProvider = (props) => {
         const response = await fetch('http://127.0.0.1:8000/api/products');
         const data = await response.json();
         setProducts(data.data);
-        setCartItems(getDefaultCart(data.data)); // Initialize cart with fetched products
+        setCartItems(getDefaultCart(data.data)); 
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching products:', error);
       }
     };
     fetchProducts();
   }, []);
-
-  const getTotalCartAmount = () => {
-    let totalAmount = 0;
-    for (const item in cartItems) {
-      if (cartItems[item] > 0) {
-        let itemInfo = products.find((product) => product.id === Number(item));
-        if (itemInfo) {
-          totalAmount += cartItems[item] * itemInfo.attributes.price;
-        }
-      }
-    }
-    return totalAmount;
-  };
 
   const getTotalItemsCount = () => {
     return Object.values(cartItems).reduce((acc, itemCount) => acc + itemCount, 0);
@@ -59,6 +50,12 @@ export const ShopContextProvider = (props) => {
 
   const checkout = () => {
     setCartItems(getDefaultCart(products));
+    incrementOrderCount(); // Increment order count on checkout
+
+  };
+
+  const incrementOrderCount = () => {
+    setOrderCount(prevCount => prevCount + 1);
   };
 
   const contextValue = {
@@ -67,14 +64,15 @@ export const ShopContextProvider = (props) => {
     updateCartItemCount,
     removeFromCart,
     getTotalItemsCount,
-    getTotalCartAmount,
     checkout,
     products,
+    orderCount, 
+
   };
 
   return (
     <ShopContext.Provider value={contextValue}>
-      {props.children}
+      {!loading ? props.children : <p>Loading...</p>}
     </ShopContext.Provider>
   );
 };

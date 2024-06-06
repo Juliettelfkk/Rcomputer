@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import CategoryHome from './CategoryHome'
+import CategoryHome from '../CategoryHome'
 import HomeProducts from './HomeProducts'
 import HomeProductsOnSale from './HomeProductsOnSale'
 
@@ -54,7 +54,6 @@ export default function Home() {
     <CategoryHome/>
     <HomeProducts/>  
   <HomeProductsOnSale/>
-    {/* new produtcs */}
     </div>
   )
 }
