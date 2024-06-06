@@ -9,6 +9,7 @@ import { ShopContext, ShopContextProvider } from './context/ShopContextProvider'
 import Cart from './pages/cart/Cart';
 import Checkout from './pages/checkout/Checkout';
 import Home from './pages/Home/Home';
+import Receipt from './pages/checkout/Receipt';
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path='/checkout' element={<Checkout/>} />
+          <Route path="/receipt" element={<Receipt />} />
+
         </Routes>
         <Footer />
       </Router>

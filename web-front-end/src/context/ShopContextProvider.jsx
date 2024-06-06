@@ -14,6 +14,8 @@ export const ShopContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [orderCount, setOrderCount] = useState(0); // to count orders
+
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -48,6 +50,12 @@ export const ShopContextProvider = (props) => {
 
   const checkout = () => {
     setCartItems(getDefaultCart(products));
+    incrementOrderCount(); // Increment order count on checkout
+
+  };
+
+  const incrementOrderCount = () => {
+    setOrderCount(prevCount => prevCount + 1);
   };
 
   const contextValue = {
@@ -58,6 +66,8 @@ export const ShopContextProvider = (props) => {
     getTotalItemsCount,
     checkout,
     products,
+    orderCount, 
+
   };
 
   return (

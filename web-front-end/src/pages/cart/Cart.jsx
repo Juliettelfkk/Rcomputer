@@ -22,17 +22,16 @@ function Cart() {
           total += discountedPrice * cartItems[itemId];
         }
       }
-      setTotalAmount(total.toFixed(2)); // Set total amount with two decimal places
+      setTotalAmount(total.toFixed(2));
     };
   
-    calculateTotalAmount(); // Initial calculation
+    calculateTotalAmount(); 
   }, [cartItems, products]);
   
 
   const handleCheckout = () => {
-    checkout(); // This calls the checkout function from ShopContext
-    navigate("/checkout"); // Redirect to the checkout page
-  };
+    navigate("/checkout", { state: { totalAmount } }); // passing subtotal via navigate
+  }
 
   const cartProductIds = Object.keys(cartItems).filter(id => cartItems[id] > 0);
 
