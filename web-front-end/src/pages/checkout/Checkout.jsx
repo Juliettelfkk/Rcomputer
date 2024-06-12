@@ -1,14 +1,12 @@
-import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { ShopContext } from "../../context/ShopContextProvider";
+import React, { useContext, useState } from 'react'
+import { ShopContext } from '../../context/ShopContextProvider';
+import { useNavigate } from 'react-router-dom';
 import "./Checkout.css";
 import MyForm from "./MyForm";
 
-function Checkout() {
+export default function Checkout() {
   const { cartItems, products ,orderCount, checkout} = useContext(ShopContext);
   const navigate = useNavigate();
-  
-
   const [billingInfo, setBillingInfo] = useState({
     Name: "",
     lastName: "",
@@ -18,7 +16,6 @@ function Checkout() {
     wilaya: "Alger",
     address: "",
   });
-
   const cartProductIds = Object.keys(cartItems).filter(id => cartItems[id] > 0);
   const isEmptyCart = cartProductIds.length === 0;
 
@@ -55,67 +52,64 @@ function Checkout() {
 
   return (
     <div className="checkout container-fluid min-vh-100" style={{ paddingTop: "110px" }}>
-      <div className="row checkoutInfo">
-        <div className="col-md-7 p-3">
-          <div className="customer_details">
-            <h2>ORDER INFORMATION</h2>
-       <MyForm billingInfo={billingInfo} handleInputChange={handleInputChange}/>
-          </div>
-        </div>
-        <div className="col-md-5 p-3 mt-0">
-          {isEmptyCart ? (
-            <div className="text-center">
-              <h2>Your Shopping Cart is Empty</h2>
-              <button onClick={() => navigate("/shop")} className="btn btn-primary">Return to Shop</button>
-            </div>
-          ) : (
-            <div className="order-summary shadow">
-              <h2 className="uppercase">Your order</h2>
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Product</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {products
-                    .filter(product => cartProductIds.includes(product.id))
-                    .map(product => {
-                      const price = parseFloat(product.attributes.price);
-                      const discountedPrice = product.attributes.discount
-                        ? price - (price * parseFloat(product.attributes.discount) / 100)
-                        : price;
-                      
-                      return (
-
-                      <tr key={product.id}>
-                        <td>{product.attributes.name}</td>
-                        <td>{cartItems[product.id]}</td>
-                        <td>{discountedPrice.toFixed(2)} DA</td>
-                      </tr>
-                      );})}
-                    
-                </tbody>
-              </table>
-              <div className="order-total">
-                <p>Sous-total <span className="text-success" style={{fontWeight:"bold"}}>{totalAmount} DA</span></p>
-                <p>Expédition <span>Livraison gratuite</span></p>
-                <p>Total <span>{totalAmount} DA</span></p>
-              </div>
-              <div className="payment-method">
-                <p>Cash on delivery</p>
-                <p>Pay with cash upon delivery.</p>
-              </div>
-              <button className="place-order-button" onClick={handleConfirmOrder}>COMMANDER</button>
-              <p className="privacy-policy">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
-            </div>
-          )}
+    <div className="row checkoutInfo">
+      <div className="col-md-7 p-3">
+        <div className="customer_details">
+          <h2>ORDER INFORMATION</h2>
+     <MyForm billingInfo={billingInfo} handleInputChange={handleInputChange}/>
         </div>
       </div>
-    </div>
-  );
-}
+      <div className="col-md-5 p-3 mt-0">
+        {isEmptyCart ? (
+          <div className="text-center">
+            <h2>Your Shopping Cart is Empty</h2>
+            <button onClick={() => navigate("/shop")} className="btn btn-primary">Return to Shop</button>
+          </div>
+        ) : (
+          <div className="order-summary shadow">
+            <h2 className="uppercase">Your order</h2>
+            <table className="table">
+              <thead>
+                <tr>
+                  <th scope="col">Product</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                {products
+                  .filter(product => cartProductIds.includes(product.id))
+                  .map(product => {
+                    const price = parseFloat(product.attributes.price);
+                    const discountedPrice = product.attributes.discount
+                      ? price - (price * parseFloat(product.attributes.discount) / 100)
+                      : price;
+                    
+                    return (
 
-export default Checkout;
+                    <tr key={product.id}>
+                      <td>{product.attributes.name}</td>
+                      <td>{cartItems[product.id]}</td>
+                      <td>{discountedPrice.toFixed(2)} DA</td>
+                    </tr>
+                    );})}
+                  
+              </tbody>
+            </table>
+            <div className="order-total">
+              <p>Sous-total <span className="text-success" style={{fontWeight:"bold"}}>{totalAmount} DA</span></p>
+              <p>Expédition <span>Livraison gratuite</span></p>
+              <p>Total <span>{totalAmount} DA</span></p>
+            </div>
+            <div className="payment-method">
+              <p>Cash on delivery</p>
+              <p>Pay with cash upon delivery.</p>
+            </div>
+            <button className="place-order-button" onClick={handleConfirmOrder}>COMMANDER</button>
+            <p className="privacy-policy">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>  )
+}

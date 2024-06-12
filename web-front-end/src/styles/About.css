@@ -1,0 +1,37 @@
+.about-header {
+  position: relative;
+  background-image: url(../src/assets/contactBg.png) ;
+  background-size: cover;
+  background-position: center;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-header h1 {
+  z-index: 1;
+  color: white;
+  font-size: 29px;
+}
+
+.about-section {
+  padding: 2rem 0;
+}
+
+.about-section .container {
+  max-width: 800px;
+  margin: auto;
+}
