@@ -8,10 +8,10 @@ import MyForm from "./MyForm";
 function Checkout() {
   const { cartItems, products, orderCount, checkout } = useContext(ShopContext);
   const navigate = useNavigate();
+  const url = "http://127.0.0.1:8000/api/orders";
 
   const [billingInfo, setBillingInfo] = useState({
-    Name: "",
-    lastName: "",
+    FullName: "",
     email: "",
     phone: "",
     buildingInfo: "",
@@ -49,6 +49,7 @@ function Checkout() {
   const handleConfirmOrder = () => {
     const orderNumber = orderCount + 1; // Use the order count as order number
     const orderDate = new Date().toLocaleDateString();
+    let productsQuantity = [];
 
     checkout(); // Call checkout to clear cart and increment order count
     // Navigate to receipt page with billing info and total amount
@@ -62,6 +63,65 @@ function Checkout() {
         orderDate,
       },
     });
+
+    for (let i = 0; i < cartProductIds.length; i++) {
+      productsQuantity.push(cartItems[cartProductIds[i]]);
+    }
+
+    const [firstName, lastName] = billingInfo.Name.split(" ");
+    const productsElements = Object.values(cartProductIds);
+    const productsElementsIntegers = productsElements.map((num) => +num);
+
+    const orderData = {
+      order: [
+        {
+          first_name: firstName,
+          last_name: lastName,
+          email: billingInfo.email,
+          phone: billingInfo.phone,
+          address: billingInfo.wilaya,
+          city: billingInfo.address,
+        },
+        {
+          products: productsElementsIntegers,
+          quantities: productsQuantity,
+          total_price: totalAmount,
+        },
+      ],
+    };
+
+    const submit = async () => {
+      const result = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(
+          {
+            order: [
+              {
+                first_name: firstName,
+                last_name: lastName,
+                email: billingInfo.email,
+                phone: billingInfo.phone,
+                address: billingInfo.wilaya,
+                city: billingInfo.address,
+              },
+              {
+                products: productsElementsIntegers,
+                quantities: productsQuantity,
+                total_price: totalAmount,
+              },
+            ],
+          }
+        ),
+      });
+
+      const resultJson = await result.json();
+      console.log(resultJson);
+    };
+
+    submit();
   };
 
   return (

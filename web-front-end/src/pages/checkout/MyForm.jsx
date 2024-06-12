@@ -6,17 +6,14 @@ function MyForm({ billingInfo, handleInputChange }) {
   return (
     <form>
       <div className="row">
-        <div className="col-md-6">
-          <label className="name mb-2">Name</label>
-          <input type="text" className="form-control" placeholder="First name"
-            name="Name" value={billingInfo.Name} onChange={handleInputChange}
-            required />
-        </div>
-        <div className="col-md-6">
-          <label className="LastName mb-2">LastName</label>
-          <input type="text" className="form-control" placeholder="Last name"
-            name="address"
-            value={billingInfo.lastname}
+        <div className="col-md-12">
+          <label className="name mb-2">Full Name</label>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="full name"
+            name="Name"
+            value={billingInfo.Name}
             onChange={handleInputChange}
             required
           />
@@ -25,36 +22,50 @@ function MyForm({ billingInfo, handleInputChange }) {
       <div className="row">
         <div className="col-md-12">
           <label className="Email mb-2">E-mail *</label>
-          <input type="text" className="form-control" placeholder="email"
+          <input
+            type="text"
+            className="form-control"
+            placeholder="E-mail"
             name="email"
             value={billingInfo.email}
             onChange={handleInputChange}
-            required />
+            required
+          />
         </div>
       </div>
 
       <div className="row">
         <div className="col-md-12">
           <label className="phoneNumber mb-2">Phone Number *</label>
-          <input type="text" className="form-control" placeholder="+210"
+          <input
+            type="text"
+            className="form-control"
+            placeholder="+210"
             name="phone"
             value={billingInfo.phone}
             onChange={handleInputChange}
             required
           />
-
         </div>
       </div>
       <div className="row">
         <div className="col-md-12">
-          <label className="mb-2" htmlFor="inputWilaya">Wilaya</label>
-          <select className="form-control" id="inputWilaya" defaultValue=""
+          <label className="mb-2" htmlFor="inputWilaya">
+            Wilaya
+          </label>
+          <select
+            className="form-control"
+            id="inputWilaya"
+            defaultValue=""
             name="wilaya"
             value={billingInfo.wilaya}
             onChange={handleInputChange}
             required
           >
-            <option value="" disabled> Select Wilaya d'Alger </option>
+            <option value="" disabled>
+              {" "}
+              Select Wilaya d'Alger{" "}
+            </option>
             <option value="Adrar">Adrar</option>
             <option value="Chlef">Chlef</option>
             <option value="Laghouat">Laghouat</option>
@@ -104,16 +115,19 @@ function MyForm({ billingInfo, handleInputChange }) {
             <option value="Ghardaïa">Ghardaïa</option>
             <option value="Relizane">Relizane</option>
           </select>
-
         </div>
       </div>
       <div className="row">
         <div className="col-md-12">
           <label className="adress mb-2">Adresse *</label>
-          <input type="text" className="form-control" placeholder="Your adresse"
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Your adresse"
             name="address"
             value={billingInfo.address}
-            onChange={handleInputChange} />
+            onChange={handleInputChange}
+          />
         </div>
       </div>
     </form>
