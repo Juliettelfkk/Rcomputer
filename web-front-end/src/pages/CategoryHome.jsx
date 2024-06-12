@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import CategoryImg from '../assets/accessoriesc.jpg';
@@ -7,7 +8,7 @@ export default function CategoryHome() {
   useEffect(() => {
     axios.get('http://127.0.0.1:8000/api/categories')
       .then(res => {
-        console.log('Response data:', res.data);
+        // console.log('Response data:', res.data);
         setCategories(res.data.data); 
       })
       .catch(error => {

@@ -8,7 +8,7 @@ function SideBar({ onCategoryChange, onBrandChange }) {
   useEffect(() => {
     axios.get('http://127.0.0.1:8000/api/categories')
       .then(res => {
-        console.log('Response data:', res.data); 
+        // console.log('Response data:', res.data); 
         setCategories(res.data.data);
       })
       .catch(error => {
@@ -17,7 +17,7 @@ function SideBar({ onCategoryChange, onBrandChange }) {
 
     axios.get('http://127.0.0.1:8000/api/brands')
       .then(res => {
-        console.log('Brands Response data:', res.data);
+        // console.log('Brands Response data:', res.data);
         setBrands(res.data.data);
       })
       .catch(error => {

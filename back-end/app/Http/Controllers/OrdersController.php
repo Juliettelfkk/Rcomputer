@@ -20,7 +20,7 @@ class OrdersController extends Controller
         $orders = Order::orderby('created_at', 'DESC');
 
         return view('pages.orders', [
-            'orders' => $orders->paginate(10),
+            'orders' => $orders->paginate(4),
         ]);
     }
 

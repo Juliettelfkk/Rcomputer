@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./cart.css";
@@ -5,7 +6,7 @@ import { ShopContext } from "../../context/ShopContextProvider";
 import { CartItem } from "./CartItem";
 
 function Cart() {
-  const { cartItems,checkout, products } = useContext(ShopContext);
+  const { cartItems, checkout, products } = useContext(ShopContext);
   const [totalAmount, setTotalAmount] = useState(0);
   const navigate = useNavigate();
 
@@ -13,27 +14,31 @@ function Cart() {
     const calculateTotalAmount = () => {
       let total = 0;
       for (const itemId in cartItems) {
-        const item = products.find(product => product.id === itemId);
+        const item = products.find((product) => product.id === itemId);
         if (item) {
           const price = parseFloat(item.attributes.price);
           const discountedPrice = item.attributes.discount
-            ? parseFloat(item.attributes.price) - (parseFloat(item.attributes.price) * parseFloat(item.attributes.discount) / 100)
+            ? parseFloat(item.attributes.price) -
+              (parseFloat(item.attributes.price) *
+                parseFloat(item.attributes.discount)) /
+                100
             : price;
           total += discountedPrice * cartItems[itemId];
         }
       }
       setTotalAmount(total.toFixed(2));
     };
-  
-    calculateTotalAmount(); 
+
+    calculateTotalAmount();
   }, [cartItems, products]);
-  
 
   const handleCheckout = () => {
     navigate("/checkout", { state: { totalAmount } }); // passing subtotal via navigate
-  }
+  };
 
-  const cartProductIds = Object.keys(cartItems).filter(id => cartItems[id] > 0);
+  const cartProductIds = Object.keys(cartItems).filter(
+    (id) => cartItems[id] > 0
+  );
 
   return (
     <div className="cart min-vh-100">
@@ -42,15 +47,16 @@ function Cart() {
       </div>
       <div className="cart-i">
         {products
-          .filter(product => cartProductIds.includes(product.id))
-          .map(product => (
+          .filter((product) => cartProductIds.includes(product.id))
+          .map((product) => (
             <CartItem key={product.id} data={product} />
           ))}
       </div>
-
       {totalAmount > 0 ? (
         <div className="checkout">
-          <p className="text-success" style={{fontWeight:'bold'}}>Subtotal: {totalAmount}DA</p>
+          <p className="text-success" style={{ fontWeight: "bold" }}>
+            Subtotal: {totalAmount}DA
+          </p>
           <button onClick={() => navigate("/shop")}>Continue Shopping</button>
           <button onClick={handleCheckout}>Checkout</button>
         </div>
@@ -62,7 +68,6 @@ function Cart() {
           </button>
         </div>
       )}
-     
     </div>
   );
 }

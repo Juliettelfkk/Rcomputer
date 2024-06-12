@@ -1,13 +1,15 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useContext } from "react";
 import { ShopContext } from "../../context/ShopContextProvider";
 
 export const CartItem = (props) => {
   const { id, attributes } = props.data;
-  const { cartItems, addToCart, removeFromCart, updateCartItemCount } = useContext(ShopContext);
+  const { cartItems, addToCart, removeFromCart, updateCartItemCount } =
+    useContext(ShopContext);
 
   const price = parseFloat(attributes.price);
   const discount = parseFloat(attributes.discount);
-  const discountedPrice = discount ? price - (price * discount / 100) : price;
+  const discountedPrice = discount ? price - (price * discount) / 100 : price;
 
   const handleAddToCart = () => {
     if (cartItems[id] < attributes.quantity) {
@@ -35,15 +37,22 @@ export const CartItem = (props) => {
           <b>{attributes.name}</b>
         </p>
         <p>
-
           {discount ? (
             <>
-              <span className="discounted-price" style={{ color: 'red', fontWeight: 'bold' }} >{discountedPrice}Da</span>
-              <span className="product-price"><del>{price}Da</del></span>
-
+              <span
+                className="discounted-price"
+                style={{ color: "red", fontWeight: "bold" }}
+              >
+                {discountedPrice}Da
+              </span>
+              <span className="product-price">
+                <del>{price}Da</del>
+              </span>
             </>
           ) : (
-            <span className="product-price" style={{fontWeight:'bold'}}>{price}Da</span>
+            <span className="product-price" style={{ fontWeight: "bold" }}>
+              {price}Da
+            </span>
           )}
         </p>
         <div className="countHandler">
