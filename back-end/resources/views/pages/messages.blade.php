@@ -69,7 +69,7 @@
                                                 @foreach ($messages as $message)
                                                     <tr>
                                                         <td>{{ $message['id'] }}</td>
-                                                        <td>{{ $message['created_at']->diffForHumans() }}</td>
+                                                        <td>{{ $message['created_at']->toDateString() }}</td>
                                                         <td>{{ $message['name'] }}</td>
                                                         <td>{{ $message['email'] }}</td>
                                                         <td>{{ $message['subject'] }}</td>

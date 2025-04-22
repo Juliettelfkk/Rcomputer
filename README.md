@@ -41,6 +41,7 @@
    php artisan serve
 ```
 ## Screenshots ( client side)
+## Screenshots ( client side)
 ![Homepage Screenshot](assets/screenshots/clientHome.png)
 ![Homepage Screenshot](assets/screenshots/clientHome2.png)
 ![Homepage Screenshot](assets/screenshots/clientHome3.png)
@@ -53,4 +54,9 @@
 ![ProductPage Screenshot](assets/screenshots/adminProduct.png)
 ![OrdersPage Screenshot](assets/screenshots/adminOrders.png)
 ![MessagePage Screenshot](assets/screenshots/adminMessage.png)
+
+
+
+
+
 
