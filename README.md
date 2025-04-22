@@ -36,6 +36,10 @@
    composer install
 3. Set up your .env file with the appropriate configurations for database, mail, etc.
 4. Run the migration , start the Laravel development server:
-```bash
+```
    php artisan migrate
    php artisan serve
+```
+## Screenshots
+![Homepage Screenshot](assets/screenshots/clientHome.png)
+
