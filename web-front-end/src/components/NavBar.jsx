@@ -22,24 +22,24 @@ export default function NavBar() {
           <img src={Logo} alt="Logo" width="50" />
           <span className="text-uppercase text-light  fx-lighter ml-0">
             computer
-          </span>
+          </span>  
         </Link>
         <div className="order-lg-2 ">
-          <button type="button" className="btn position-relative">
-            <i className="fa fa-search text-light"></i>
-          </button>
-
-          <Link to="/cart" className="btn position-relative">
-            <i className="fa fa-shopping-cart text-light"></i>
-            {totalItems > 0 && (
-              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
-                {totalItems}
+          <div className="container">
+            <Link to="/cart" className="d-flex justify-content-between align-items-center btn position-relative">
+              <span className="text-uppercase text-light  fx-lighter">
+                cart
               </span>
-            )}
-          </Link>
-          <button type="button" className="btn position-relative  ">
-            <i className="fa fas fa-user-alt	 text-light "></i>
-          </button>
+              <i className="ms-3 fa fa-shopping-cart text-light"></i>
+              {totalItems > 0 && (
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
+
+          </div>
+
         </div>
         <button
           className="navbar-toggler border-0"

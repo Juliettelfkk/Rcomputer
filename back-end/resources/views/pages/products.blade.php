@@ -66,7 +66,7 @@
                                                     <th scope="col">Category</th>
                                                     <th scope="col">Description</th>
                                                     <th scope="col">Price</th>
-                                                    <th scope="col">Descount</th>
+                                                    <th scope="col">Discount</th>
                                                     <th scope="col">Quantity</th>
                                                     <th scope="cal">Image</th>
                                                     <th scope="col">Options</th>
