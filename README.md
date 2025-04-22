@@ -40,6 +40,17 @@
    php artisan migrate
    php artisan serve
 ```
-## Screenshots
+## Screenshots ( client side)
 ![Homepage Screenshot](assets/screenshots/clientHome.png)
+![Homepage Screenshot](assets/screenshots/clientHome2.png)
+![Homepage Screenshot](assets/screenshots/clientHome3.png)
+![shopage Screenshot](assets/screenshots/shopPage.png)
+![Checkoutpage Screenshot](assets/screenshots/checkout.png)
+
+## admin side
+![Login Screenshot](assets/screenshots/adminLogin.png)
+![Dashboard page Screenshot](assets/screenshots/adminDashboard.png)
+![ProductPage Screenshot](assets/screenshots/adminProduct.png)
+![OrdersPage Screenshot](assets/screenshots/adminOrders.png)
+![MessagePage Screenshot](assets/screenshots/adminMessage.png)
 
